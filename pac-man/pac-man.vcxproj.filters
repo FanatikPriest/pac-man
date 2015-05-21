@@ -27,6 +27,15 @@
     <ClCompile Include="src\keyboard_handler.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="src\player.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\game_object.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\moving_object.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\application.h">
@@ -39,6 +48,21 @@
       <Filter>Source Files</Filter>
     </ClInclude>
     <ClInclude Include="src\delta.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\player.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\vector_2f.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\game_object.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\size.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\moving_object.h">
       <Filter>Source Files</Filter>
     </ClInclude>
   </ItemGroup>
