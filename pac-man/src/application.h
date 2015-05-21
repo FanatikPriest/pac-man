@@ -10,8 +10,9 @@ public:
 	int on_execute(); // executes the SDL application
 
 private:
-	bool        _is_running;
-	SDL_Window* _sdl_window;
+	bool          _is_running;
+	SDL_Window*   _window;
+	SDL_Renderer* _renderer;
 
 	bool on_init();						   // initializes the application data
 	void on_event(const SDL_Event& event); // handles keyboard events as well as some SDL-specific events

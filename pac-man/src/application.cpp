@@ -4,8 +4,9 @@
 
 Application::Application()
 {
-	_is_running = true;
-	_sdl_window = NULL;
+	_is_running     = true;
+	_window         = NULL;
+	_renderer       = NULL;
 }
 
 int Application::on_execute()
@@ -40,53 +41,40 @@ bool Application::on_init()
 		return false;
 	}
 
-	_sdl_window = SDL_CreateWindow("Pac-Man",
-								   SDL_WINDOWPOS_CENTERED,
-								   SDL_WINDOWPOS_CENTERED,
-								   WindowSettings::WINDOW_WIDTH,
-								   WindowSettings::WINDOW_HEIGHT,
-								   SDL_WINDOW_SHOWN); // TODO: try SDL_WINDOW_FULLSCREEN_DESKTOP, would it achieve downscaling?
+	_window = SDL_CreateWindow("Pac-Man",
+								SDL_WINDOWPOS_CENTERED,
+								SDL_WINDOWPOS_CENTERED,
+								WindowSettings::WINDOW_WIDTH,
+								WindowSettings::WINDOW_HEIGHT,
+								SDL_WINDOW_SHOWN);
 
-	if (_sdl_window == NULL)
+	if (_window == NULL)
 	{
 		return false;
 	}
+
+	_renderer = SDL_CreateRenderer(_window, -1, SDL_RENDERER_ACCELERATED);
 
 	return true;
 }
 
 void Application::on_event(const SDL_Event& event)
 {
-	switch (event.type) {
-		case SDL_QUIT: {
+	switch (event.type)
+	{
+		case SDL_QUIT:
+		{
 			_is_running = false;
 			break;
 		}
 		case SDL_KEYDOWN:
-		case SDL_KEYUP: {
-			KeyboardHandler& keyboard = KeyboardHandler::get_instance();
+		case SDL_KEYUP:
+		{
+			KeyboardHandler::update_states(event);
 
-			switch (event.key.keysym.scancode) {
-				case SDL_SCANCODE_UP: {
-					keyboard.up = event.key.state;
-					break;
-				}
-				case SDL_SCANCODE_DOWN: {
-					keyboard.down = event.key.state;
-					break;
-				}
-				case SDL_SCANCODE_LEFT: {
-					keyboard.left = event.key.state;
-					break;
-				}
-				case SDL_SCANCODE_RIGHT: {
-					keyboard.right = event.key.state;
-					break;
-				}
-				case SDL_SCANCODE_ESCAPE: {
-					_is_running = false;
-					break;
-				}
+			if (event.key.keysym.scancode == SDL_SCANCODE_ESCAPE)
+			{
+				_is_running = false;
 			}
 
 			break;
@@ -101,10 +89,22 @@ void Application::on_loop()
 
 void Application::on_render()
 {
+	// fill with black to wipe previous frame
+	SDL_SetRenderDrawColor(_renderer, 0x00, 0x00, 0x00, 0xFF);
+	SDL_RenderClear(_renderer);
 
+	// render a filled quad
+	SDL_SetRenderDrawColor(_renderer, 0xFF, 0xFF, 0x00, 0xFF);
+	SDL_Rect rect = { 10, 10, 100, 100 };
+	SDL_RenderFillRect(_renderer, &rect);
+
+	// update the surface with this frame's graphics
+	SDL_RenderPresent(_renderer);
 }
 
 void Application::on_cleanup()
 {
+	SDL_DestroyWindow(_window);
+
 	SDL_Quit();
 }
