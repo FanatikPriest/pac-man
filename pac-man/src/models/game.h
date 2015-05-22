@@ -1,6 +1,7 @@
 #pragma once
 
 #include "player.h"
+#include "level.h"
 
 class Game
 {
@@ -9,6 +10,7 @@ public:
 
 private:
 	Player _player;
+	Level  _level;
 
 	void create_player(float x, float y);
 

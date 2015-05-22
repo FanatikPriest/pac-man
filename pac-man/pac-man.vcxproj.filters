@@ -69,6 +69,18 @@
     <ClCompile Include="src\utilities\delta.cpp">
       <Filter>Source Files\utilities</Filter>
     </ClCompile>
+    <ClCompile Include="src\models\level.cpp">
+      <Filter>Source Files\models</Filter>
+    </ClCompile>
+    <ClCompile Include="src\models\tile.cpp">
+      <Filter>Source Files\models</Filter>
+    </ClCompile>
+    <ClCompile Include="src\renderers\tile_renderer.cpp">
+      <Filter>Source Files\renderers</Filter>
+    </ClCompile>
+    <ClCompile Include="src\renderers\level_renderer.cpp">
+      <Filter>Source Files\renderers</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\application.h">
@@ -118,6 +130,18 @@
     </ClInclude>
     <ClInclude Include="src\application_settings.h">
       <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\models\level.h">
+      <Filter>Source Files\models</Filter>
+    </ClInclude>
+    <ClInclude Include="src\models\tile.h">
+      <Filter>Source Files\models</Filter>
+    </ClInclude>
+    <ClInclude Include="src\renderers\tile_renderer.h">
+      <Filter>Source Files\renderers</Filter>
+    </ClInclude>
+    <ClInclude Include="src\renderers\level_renderer.h">
+      <Filter>Source Files\renderers</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
