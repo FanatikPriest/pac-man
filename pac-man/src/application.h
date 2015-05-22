@@ -9,7 +9,7 @@ class Application
 public:
 	Application();
 
-	int on_execute(); // executes the SDL application
+	int execute(); // executes the SDL application
 
 private:
 	bool          _is_running;

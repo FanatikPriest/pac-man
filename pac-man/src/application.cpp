@@ -1,5 +1,5 @@
 #include "application.h"
-#include "window_settings.h"
+#include "application_settings.h"
 #include "keyboard_handler.h"
 #include "utilities\delta.h"
 
@@ -15,7 +15,7 @@ Application::Application()
 	_renderer       = NULL;
 }
 
-int Application::on_execute()
+int Application::execute()
 {
 	if (initialize() == false)
 	{
@@ -26,6 +26,8 @@ int Application::on_execute()
 
 	while (_is_running)
 	{
+		Delta::set();
+
 		while (SDL_PollEvent(&event))
 		{
 			handle_events(event);
@@ -33,6 +35,13 @@ int Application::on_execute()
 
 		update();
 		render();
+
+		// wait till the end of the time frame if needed
+		Uint32 frame_ticks = SDL_GetTicks() - Delta::get_ticks();
+		if (frame_ticks < ApplicationSettings::TICKS_PER_FRAME)
+		{
+			SDL_Delay(ApplicationSettings::TICKS_PER_FRAME - frame_ticks);
+		}
 	}
 
 	cleanup();
@@ -50,8 +59,8 @@ bool Application::initialize()
 	_window = SDL_CreateWindow("Pac-Man",
 								SDL_WINDOWPOS_CENTERED,
 								SDL_WINDOWPOS_CENTERED,
-								WindowSettings::WINDOW_WIDTH,
-								WindowSettings::WINDOW_HEIGHT,
+								ApplicationSettings::WINDOW_WIDTH,
+								ApplicationSettings::WINDOW_HEIGHT,
 								SDL_WINDOW_SHOWN);
 
 	if (_window == NULL)
@@ -90,8 +99,6 @@ void Application::handle_events(const SDL_Event& event)
 
 void Application::update()
 {
-	Delta::set();
-
 	GameController game_controller(_game);
 
 	game_controller.update();

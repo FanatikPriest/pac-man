@@ -77,9 +77,6 @@
     <ClInclude Include="src\keyboard_handler.h">
       <Filter>Source Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\window_settings.h">
-      <Filter>Source Files</Filter>
-    </ClInclude>
     <ClInclude Include="src\vector_2f.h">
       <Filter>Source Files</Filter>
     </ClInclude>
@@ -118,6 +115,9 @@
     </ClInclude>
     <ClInclude Include="src\utilities\delta.h">
       <Filter>Source Files\utilities</Filter>
+    </ClInclude>
+    <ClInclude Include="src\application_settings.h">
+      <Filter>Source Files</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

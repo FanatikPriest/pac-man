@@ -28,6 +28,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\application.h" />
+    <ClInclude Include="src\application_settings.h" />
     <ClInclude Include="src\controllers\game_controller.h" />
     <ClInclude Include="src\controllers\moving_object_controller.h" />
     <ClInclude Include="src\controllers\player_controller.h" />
@@ -42,7 +43,6 @@
     <ClInclude Include="src\size.h" />
     <ClInclude Include="src\utilities\delta.h" />
     <ClInclude Include="src\vector_2f.h" />
-    <ClInclude Include="src\window_settings.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{A51A9806-6456-4D44-B9E2-5A94B9B57AFD}</ProjectGuid>

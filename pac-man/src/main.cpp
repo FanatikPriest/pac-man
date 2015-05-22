@@ -3,5 +3,5 @@
 int main(int, char**) {
 	Application application;
 
-	return application.on_execute();
+	return application.execute();
 }
