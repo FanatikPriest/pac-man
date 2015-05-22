@@ -20,3 +20,10 @@ MovingObject::MovingObject(float x, float y, float height, float width, float dx
 	set_direction(dx, dy);
 	set_speed(speed);
 }
+
+void MovingObject::move()
+{
+	Vector2f position = get_position() + (get_direction() * get_speed() * Delta::get());
+
+	set_position(position);
+}

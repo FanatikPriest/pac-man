@@ -13,6 +13,18 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Source Files\controllers">
+      <UniqueIdentifier>{2b711fe3-39c0-4ff8-b9c1-b4f369d041a6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\renderers">
+      <UniqueIdentifier>{1cfdd565-6cfa-47b0-99b5-f993beb5f134}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\models">
+      <UniqueIdentifier>{30583044-9e7f-406b-862d-63394a1bea2b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\utilities">
+      <UniqueIdentifier>{31b6c0a1-c3f8-4da8-a275-3423878b8128}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\main.cpp">
@@ -21,20 +33,41 @@
     <ClCompile Include="src\application.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\delta.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="src\keyboard_handler.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\player.cpp">
+    <ClCompile Include="src\movement_handler.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\game_object.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="src\controllers\game_controller.cpp">
+      <Filter>Source Files\controllers</Filter>
     </ClCompile>
-    <ClCompile Include="src\moving_object.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="src\controllers\moving_object_controller.cpp">
+      <Filter>Source Files\controllers</Filter>
+    </ClCompile>
+    <ClCompile Include="src\controllers\player_controller.cpp">
+      <Filter>Source Files\controllers</Filter>
+    </ClCompile>
+    <ClCompile Include="src\renderers\game_renderer.cpp">
+      <Filter>Source Files\renderers</Filter>
+    </ClCompile>
+    <ClCompile Include="src\renderers\player_renderer.cpp">
+      <Filter>Source Files\renderers</Filter>
+    </ClCompile>
+    <ClCompile Include="src\models\game.cpp">
+      <Filter>Source Files\models</Filter>
+    </ClCompile>
+    <ClCompile Include="src\models\game_object.cpp">
+      <Filter>Source Files\models</Filter>
+    </ClCompile>
+    <ClCompile Include="src\models\moving_object.cpp">
+      <Filter>Source Files\models</Filter>
+    </ClCompile>
+    <ClCompile Include="src\models\player.cpp">
+      <Filter>Source Files\models</Filter>
+    </ClCompile>
+    <ClCompile Include="src\utilities\delta.cpp">
+      <Filter>Source Files\utilities</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -47,23 +80,44 @@
     <ClInclude Include="src\window_settings.h">
       <Filter>Source Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\delta.h">
-      <Filter>Source Files</Filter>
-    </ClInclude>
-    <ClInclude Include="src\player.h">
-      <Filter>Source Files</Filter>
-    </ClInclude>
     <ClInclude Include="src\vector_2f.h">
-      <Filter>Source Files</Filter>
-    </ClInclude>
-    <ClInclude Include="src\game_object.h">
       <Filter>Source Files</Filter>
     </ClInclude>
     <ClInclude Include="src\size.h">
       <Filter>Source Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\moving_object.h">
+    <ClInclude Include="src\movement_handler.h">
       <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\controllers\game_controller.h">
+      <Filter>Source Files\controllers</Filter>
+    </ClInclude>
+    <ClInclude Include="src\controllers\moving_object_controller.h">
+      <Filter>Source Files\controllers</Filter>
+    </ClInclude>
+    <ClInclude Include="src\controllers\player_controller.h">
+      <Filter>Source Files\controllers</Filter>
+    </ClInclude>
+    <ClInclude Include="src\renderers\game_renderer.h">
+      <Filter>Source Files\renderers</Filter>
+    </ClInclude>
+    <ClInclude Include="src\renderers\player_renderer.h">
+      <Filter>Source Files\renderers</Filter>
+    </ClInclude>
+    <ClInclude Include="src\models\game.h">
+      <Filter>Source Files\models</Filter>
+    </ClInclude>
+    <ClInclude Include="src\models\game_object.h">
+      <Filter>Source Files\models</Filter>
+    </ClInclude>
+    <ClInclude Include="src\models\moving_object.h">
+      <Filter>Source Files\models</Filter>
+    </ClInclude>
+    <ClInclude Include="src\models\player.h">
+      <Filter>Source Files\models</Filter>
+    </ClInclude>
+    <ClInclude Include="src\utilities\delta.h">
+      <Filter>Source Files\utilities</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

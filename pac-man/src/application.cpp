@@ -1,6 +1,12 @@
 #include "application.h"
 #include "window_settings.h"
 #include "keyboard_handler.h"
+#include "utilities\delta.h"
+
+#include "controllers\game_controller.h"
+
+#include "renderers\game_renderer.h"
+
 
 Application::Application()
 {
@@ -11,7 +17,7 @@ Application::Application()
 
 int Application::on_execute()
 {
-	if (on_init() == false)
+	if (initialize() == false)
 	{
 		return -1;
 	}
@@ -22,19 +28,19 @@ int Application::on_execute()
 	{
 		while (SDL_PollEvent(&event))
 		{
-			on_event(event);
+			handle_events(event);
 		}
 
-		on_loop();
-		on_render();
+		update();
+		render();
 	}
 
-	on_cleanup();
+	cleanup();
 
 	return 0;
 }
 
-bool Application::on_init()
+bool Application::initialize()
 {
 	if (SDL_Init(SDL_INIT_EVERYTHING) < 0)
 	{
@@ -58,7 +64,7 @@ bool Application::on_init()
 	return true;
 }
 
-void Application::on_event(const SDL_Event& event)
+void Application::handle_events(const SDL_Event& event)
 {
 	switch (event.type)
 	{
@@ -82,27 +88,30 @@ void Application::on_event(const SDL_Event& event)
 	}
 }
 
-void Application::on_loop()
+void Application::update()
 {
+	Delta::set();
 
+	GameController game_controller(_game);
+
+	game_controller.update();
 }
 
-void Application::on_render()
+void Application::render()
 {
 	// fill with black to wipe previous frame
 	SDL_SetRenderDrawColor(_renderer, 0x00, 0x00, 0x00, 0xFF);
 	SDL_RenderClear(_renderer);
 
-	// render a filled quad
-	SDL_SetRenderDrawColor(_renderer, 0xFF, 0xFF, 0x00, 0xFF);
-	SDL_Rect rect = { 10, 10, 100, 100 };
-	SDL_RenderFillRect(_renderer, &rect);
+	GameRenderer game_renderer(_game, _renderer);
+
+	game_renderer.render();
 
 	// update the surface with this frame's graphics
 	SDL_RenderPresent(_renderer);
 }
 
-void Application::on_cleanup()
+void Application::cleanup()
 {
 	SDL_DestroyWindow(_window);
 

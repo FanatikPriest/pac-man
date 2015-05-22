@@ -1,7 +1,7 @@
 #pragma once
 
-#include "vector_2f.h"
-#include "size.h"
+#include "../vector_2f.h"
+#include "../size.h"
 
 /*
 * An object that has two-dimensional size (height and width) and a two-dimensional position.

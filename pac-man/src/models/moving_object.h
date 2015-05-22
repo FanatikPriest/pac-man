@@ -1,6 +1,7 @@
 #pragma once
 
 #include "game_object.h"
+#include "../utilities/delta.h"
 
 /*
 * A game object with position, size (see GameObject), movement direction and movement speed.
@@ -17,6 +18,8 @@ public:
 	void     set_direction(float dx, float dy);
 	float    get_speed() const;
 	void     set_speed(float speed);
+
+	void move();
 	
 private:
 	Vector2f _direction;
@@ -33,11 +36,13 @@ inline Vector2f MovingObject::get_direction() const
 inline void MovingObject::set_direction(Vector2f direction)
 {
 	_direction = direction;
+	_direction.normalize();
 }
 
 inline void MovingObject::set_direction(float dx, float dy)
 {
 	_direction = Vector2f(dx, dy);
+	_direction.normalize();
 }
 
 inline float MovingObject::get_speed() const
