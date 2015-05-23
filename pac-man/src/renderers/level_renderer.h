@@ -12,4 +12,7 @@ public:
 
 private:
 	const Level& _level;
+
+	void render_tiles();
+	void render_player();
 };

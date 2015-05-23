@@ -13,6 +13,7 @@
   <ItemGroup>
     <ClCompile Include="src\application.cpp" />
     <ClCompile Include="src\controllers\game_controller.cpp" />
+    <ClCompile Include="src\controllers\level_controller.cpp" />
     <ClCompile Include="src\controllers\moving_object_controller.cpp" />
     <ClCompile Include="src\controllers\player_controller.cpp" />
     <ClCompile Include="src\keyboard_handler.cpp" />
@@ -29,12 +30,14 @@
     <ClCompile Include="src\renderers\level_renderer.cpp" />
     <ClCompile Include="src\renderers\player_renderer.cpp" />
     <ClCompile Include="src\renderers\tile_renderer.cpp" />
+    <ClCompile Include="src\utilities\collision_detector.cpp" />
     <ClCompile Include="src\utilities\delta.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\application.h" />
     <ClInclude Include="src\application_settings.h" />
     <ClInclude Include="src\controllers\game_controller.h" />
+    <ClInclude Include="src\controllers\level_controller.h" />
     <ClInclude Include="src\controllers\moving_object_controller.h" />
     <ClInclude Include="src\controllers\player_controller.h" />
     <ClInclude Include="src\keyboard_handler.h" />
@@ -52,6 +55,7 @@
     <ClInclude Include="src\renderers\player_renderer.h" />
     <ClInclude Include="src\renderers\tile_renderer.h" />
     <ClInclude Include="src\size.h" />
+    <ClInclude Include="src\utilities\collision_detector.h" />
     <ClInclude Include="src\utilities\delta.h" />
     <ClInclude Include="src\vector_2f.h" />
   </ItemGroup>

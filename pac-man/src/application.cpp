@@ -107,7 +107,7 @@ void Application::update()
 void Application::render()
 {
 	// fill with black to wipe previous frame
-	SDL_SetRenderDrawColor(_renderer, 0x00, 0x00, 0x00, 0xFF);
+	SDL_SetRenderDrawColor(_renderer, 0xFF, 0xFF, 0xFF, 0xFF);
 	SDL_RenderClear(_renderer);
 
 	GameRenderer game_renderer(_game, _renderer);

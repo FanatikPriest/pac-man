@@ -16,4 +16,9 @@ struct Size
 		this->height = height;
 		this->width  = width;
 	}
+
+	friend Size operator+(const Size& lhs, const Size& rhs)
+	{
+		return Size(lhs.height + rhs.height, lhs.width + rhs.width);
+	}
 };

@@ -1,36 +1,50 @@
 #include "level.h"
 
+#include "../application_settings.h"
+
 Level::Level()
 {
-	_tile_rows    = 2;
-	_tile_columns = 2;
+	create_tiles_map();
 
 	create_tiles();
+
+	create_player(400.0f, 400.0f);
 }
 
 Level::~Level()
 {
 	delete_tiles();
+
+	delete[] _tiles_map;
 }
 
-Tile*** Level::get_tiles() const
+void Level::create_tiles_map()
 {
-	return _tiles;
+	_tile_rows    = 5;
+	_tile_columns = 5;
+
+	_tiles_map = new bool[25] {
+		false, false, false, false, false,
+		false, false, false, false, false,
+		false, false, true,  false, false,
+		false, false, false, false, false,
+		false, false, false, false, false,
+	};
 }
 
 void Level::create_tiles()
 {
-	float size = 50;
+	float size = ApplicationSettings::GAME_OBJECT_SIZE;
 
-	_tiles = new Tile**[_tile_rows];
+	_tiles = new Tile*[get_tiles_count()];
 
 	for (int i = 0; i < _tile_rows; i++)
 	{
-		_tiles[i] = new Tile*[_tile_columns];
-
 		for (int j = 0; j < _tile_columns; j++)
 		{
-			_tiles[i][j] = create_tile(size, size, i, j);
+			int index = i * _tile_columns + j;
+
+			_tiles[index] = create_tile(size, size, i, j);
 		}
 	}
 }
@@ -40,22 +54,31 @@ Tile* Level::create_tile(float width, float height, int row, int column)
 	float x = row * width + width / 2.0f;
 	float y = column * height + height / 2.0f;
 
-	bool is_rigid = (row + column) % 2 == 0;
+	int index = row * _tile_rows + column;
+
+	bool is_rigid = _tiles_map[index];
 
 	return new Tile(x, y, height, width, row, column, is_rigid);
 }
 
 void Level::delete_tiles()
 {
-	for (int i = 0; i < _tile_rows; i++)
+	for (int i = 0; i < get_tiles_count(); i++)
 	{
-		for (int j = 0; j < _tile_columns; j++)
-		{
-			delete _tiles[i][j];
-		}
-
-		delete [] _tiles[i];
+		delete _tiles[i];
 	}
 
 	delete[] _tiles;
+}
+
+void Level::create_player(float x = 0.0f, float y = 0.0f)
+{
+	float object_size = ApplicationSettings::GAME_OBJECT_SIZE;
+
+	Vector2f position(x, y);
+	Size     size(object_size, object_size);
+	Vector2f direction(0.0f, 0.0f);
+	float    speed = ApplicationSettings::PLAYER_SPEED;
+
+	_player = Player(position, size, direction, speed);
 }

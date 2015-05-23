@@ -84,6 +84,12 @@
     <ClCompile Include="src\renderers\game_object_renderer.cpp">
       <Filter>Source Files\renderers</Filter>
     </ClCompile>
+    <ClCompile Include="src\utilities\collision_detector.cpp">
+      <Filter>Source Files\utilities</Filter>
+    </ClCompile>
+    <ClCompile Include="src\controllers\level_controller.cpp">
+      <Filter>Source Files\controllers</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\application.h">
@@ -151,6 +157,12 @@
     </ClInclude>
     <ClInclude Include="src\renderers\base_renderer.h">
       <Filter>Source Files\renderers</Filter>
+    </ClInclude>
+    <ClInclude Include="src\utilities\collision_detector.h">
+      <Filter>Source Files\utilities</Filter>
+    </ClInclude>
+    <ClInclude Include="src\controllers\level_controller.h">
+      <Filter>Source Files\controllers</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

@@ -10,7 +10,4 @@ void GameRenderer::render()
 {
 	LevelRenderer level_renderer(_game._level, _renderer);
 	level_renderer.render();
-
-	PlayerRenderer player_renderer(_game._player, _renderer);
-	player_renderer.render();
 }

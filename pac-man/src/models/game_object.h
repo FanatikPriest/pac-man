@@ -18,6 +18,7 @@ public:
 	Size     get_size() const;
 	void     set_size(Size size);
 	void     set_size(float height, float width);
+	Size     get_half_size() const;
 	Vector2f get_position() const;
 	void     set_position(Vector2f position);
 	void     set_position(float height, float width);
@@ -50,6 +51,11 @@ inline void GameObject::set_size(Size size)
 inline void GameObject::set_size(float height, float width)
 {
 	set_size(Size(height, width));
+}
+
+inline Size GameObject::get_half_size() const
+{
+	return _half_size;
 }
 
 inline Vector2f GameObject::get_position() const
