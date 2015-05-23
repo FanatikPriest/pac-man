@@ -1,17 +1,15 @@
 #pragma once
 
-#include <SDL.h>
-
+#include "base_renderer.h"
 #include "../models/game.h"
 
-class GameRenderer
+class GameRenderer : public BaseRenderer
 {
 public:
 	GameRenderer(const Game& game, SDL_Renderer* renderer);
 
-	void render();
+	virtual void render();
 
 private:
 	const Game& _game;
-	SDL_Renderer* _renderer;
 };

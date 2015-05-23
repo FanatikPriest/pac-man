@@ -1,17 +1,15 @@
 #pragma once
 
-#include <SDL.h>
-
+#include "base_renderer.h"
 #include "../models/level.h"
 
-class LevelRenderer
+class LevelRenderer : public BaseRenderer
 {
 public:
 	LevelRenderer(const Level& level, SDL_Renderer* renderer);
 
-	void render();
+	virtual void render();
 
 private:
-	const Level&  _level;
-	SDL_Renderer* _renderer;
+	const Level& _level;
 };

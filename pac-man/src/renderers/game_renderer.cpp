@@ -2,10 +2,9 @@
 #include "player_renderer.h"
 #include "level_renderer.h"
 
-GameRenderer::GameRenderer(const Game& game, SDL_Renderer* renderer) : _game(game)
-{
-	_renderer = renderer;
-}
+GameRenderer::GameRenderer(const Game& game, SDL_Renderer* renderer)
+: BaseRenderer(renderer), _game(game)
+{}
 
 void GameRenderer::render()
 {

@@ -81,6 +81,9 @@
     <ClCompile Include="src\renderers\level_renderer.cpp">
       <Filter>Source Files\renderers</Filter>
     </ClCompile>
+    <ClCompile Include="src\renderers\game_object_renderer.cpp">
+      <Filter>Source Files\renderers</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\application.h">
@@ -141,6 +144,12 @@
       <Filter>Source Files\renderers</Filter>
     </ClInclude>
     <ClInclude Include="src\renderers\level_renderer.h">
+      <Filter>Source Files\renderers</Filter>
+    </ClInclude>
+    <ClInclude Include="src\renderers\game_object_renderer.h">
+      <Filter>Source Files\renderers</Filter>
+    </ClInclude>
+    <ClInclude Include="src\renderers\base_renderer.h">
       <Filter>Source Files\renderers</Filter>
     </ClInclude>
   </ItemGroup>

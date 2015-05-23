@@ -8,15 +8,16 @@ GameObject::GameObject()
 	set_size(zero, zero);
 }
 
-GameObject::GameObject(Vector2f position, Size size)
+GameObject::GameObject(Vector2f position, Size size, bool is_rigid)
 {
 	set_position(position);
 	set_size(size);
+	set_is_rigid(is_rigid);
 }
 
-GameObject::GameObject(float x, float y, float height, float width)
+GameObject::GameObject(float x, float y, float height, float width, bool is_rigid)
 {
 	set_position(x, y);
 	set_size(height, width);
+	set_is_rigid(is_rigid);
 }
-

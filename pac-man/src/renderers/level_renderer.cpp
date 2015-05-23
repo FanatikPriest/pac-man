@@ -1,10 +1,9 @@
 #include "level_renderer.h"
 #include "tile_renderer.h"
 
-LevelRenderer::LevelRenderer(const Level& level, SDL_Renderer* renderer) : _level(level)
-{
-	_renderer = renderer;
-}
+LevelRenderer::LevelRenderer(const Level& level, SDL_Renderer* renderer)
+	: BaseRenderer(renderer), _level(level)
+{}
 
 void LevelRenderer::render()
 {

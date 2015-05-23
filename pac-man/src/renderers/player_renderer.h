@@ -1,20 +1,16 @@
 #pragma once
 
-#include <SDL.h>
-
+#include "game_object_renderer.h"
 #include "../models/player.h"
 
-class PlayerRenderer
+class PlayerRenderer : public GameObjectRenderer
 {
 public:
 	PlayerRenderer(const Player& player, SDL_Renderer* renderer);
 
-	void render();
+protected:
+	virtual void set_color();
 
 private:
 	const Player& _player;
-	SDL_Renderer* _renderer;
-	bool _display_center_point;
-
-	void render_center_point();
 };

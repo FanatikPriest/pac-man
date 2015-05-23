@@ -24,6 +24,7 @@
     <ClCompile Include="src\models\player.cpp" />
     <ClCompile Include="src\models\tile.cpp" />
     <ClCompile Include="src\movement_handler.cpp" />
+    <ClCompile Include="src\renderers\game_object_renderer.cpp" />
     <ClCompile Include="src\renderers\game_renderer.cpp" />
     <ClCompile Include="src\renderers\level_renderer.cpp" />
     <ClCompile Include="src\renderers\player_renderer.cpp" />
@@ -44,6 +45,8 @@
     <ClInclude Include="src\models\player.h" />
     <ClInclude Include="src\models\tile.h" />
     <ClInclude Include="src\movement_handler.h" />
+    <ClInclude Include="src\renderers\base_renderer.h" />
+    <ClInclude Include="src\renderers\game_object_renderer.h" />
     <ClInclude Include="src\renderers\game_renderer.h" />
     <ClInclude Include="src\renderers\level_renderer.h" />
     <ClInclude Include="src\renderers\player_renderer.h" />

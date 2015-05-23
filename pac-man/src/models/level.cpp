@@ -40,9 +40,9 @@ Tile* Level::create_tile(float width, float height, int row, int column)
 	float x = row * width + width / 2.0f;
 	float y = column * height + height / 2.0f;
 
-	bool is_blocking = (row + column) % 2 == 0;
+	bool is_rigid = (row + column) % 2 == 0;
 
-	return new Tile(x, y, height, width, row, column, is_blocking);
+	return new Tile(x, y, height, width, row, column, is_rigid);
 }
 
 void Level::delete_tiles()

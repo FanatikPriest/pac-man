@@ -1,19 +1,16 @@
 #pragma once
 
-#include <SDL.h>
-
+#include "game_object_renderer.h"
 #include "../models/tile.h"
 
-class TileRenderer
+class TileRenderer : public GameObjectRenderer
 {
 public:
 	TileRenderer(const Tile& tile, SDL_Renderer* renderer);
 
-	void render();
+protected:
+	virtual void set_color();
 
 private:
-	const Tile&   _tile;
-	SDL_Renderer* _renderer;
-
-	void set_color();
+	const Tile& _tile;
 };

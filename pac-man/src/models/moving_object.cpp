@@ -8,14 +8,15 @@ MovingObject::MovingObject() : GameObject()
 	set_speed(zero);
 }
 
-MovingObject::MovingObject(Vector2f position, Size size, Vector2f direction, float speed) : GameObject(position, size)
+MovingObject::MovingObject(Vector2f position, Size size, Vector2f direction, float speed, bool is_rigid)
+	: GameObject(position, size, is_rigid)
 {
 	set_direction(direction);
 	set_speed(speed);
 }
 
-MovingObject::MovingObject(float x, float y, float height, float width, float dx, float dy, float speed)
-	: GameObject(x, y, height, width)
+MovingObject::MovingObject(float x, float y, float height, float width, float dx, float dy, float speed, bool is_rigid)
+	: GameObject(x, y, height, width, is_rigid)
 {
 	set_direction(dx, dy);
 	set_speed(speed);
