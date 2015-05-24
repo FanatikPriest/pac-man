@@ -36,9 +36,6 @@
     <ClCompile Include="src\keyboard_handler.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\movement_handler.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="src\controllers\game_controller.cpp">
       <Filter>Source Files\controllers</Filter>
     </ClCompile>
@@ -104,9 +101,6 @@
     <ClInclude Include="src\size.h">
       <Filter>Source Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\movement_handler.h">
-      <Filter>Source Files</Filter>
-    </ClInclude>
     <ClInclude Include="src\controllers\game_controller.h">
       <Filter>Source Files\controllers</Filter>
     </ClInclude>
@@ -163,6 +157,9 @@
     </ClInclude>
     <ClInclude Include="src\controllers\level_controller.h">
       <Filter>Source Files\controllers</Filter>
+    </ClInclude>
+    <ClInclude Include="src\utilities\directions.h">
+      <Filter>Source Files\utilities</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

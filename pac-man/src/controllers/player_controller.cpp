@@ -1,5 +1,5 @@
 #include "player_controller.h"
-#include "../movement_handler.h"
+#include "../utilities/directions.h"
 #include "../keyboard_handler.h"
 
 PlayerController::PlayerController(Player& player, Tile* underlying_tile) : _player(player), _underlying_tile(underlying_tile) {}
@@ -29,19 +29,19 @@ void PlayerController::move_player()
 
 	if (keyboard.up == SDL_PRESSED)
 	{
-		new_direction = MovementHandler::up;
+		new_direction = Directions::UP;
 	}
 	else if (keyboard.left == SDL_PRESSED)
 	{
-		new_direction = MovementHandler::left;
+		new_direction = Directions::LEFT;
 	}
 	else if (keyboard.down == SDL_PRESSED)
 	{
-		new_direction = MovementHandler::down;
+		new_direction = Directions::DOWN;
 	}
 	else if (keyboard.right == SDL_PRESSED)
 	{
-		new_direction = MovementHandler::right;
+		new_direction = Directions::RIGHT;
 	}
 
 	bool direction_changed = set_direction(new_direction);
