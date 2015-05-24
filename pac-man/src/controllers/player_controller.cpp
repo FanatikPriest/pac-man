@@ -10,22 +10,13 @@ void PlayerController::update()
 
 void PlayerController::handle_movement_collision(const GameObject& game_object)
 {
-	// TODO this could be optimized
+	SDL_Rect intersection;
 
-	Vector2f player_position  = _player.get_position();
-	Vector2f player_direction = _player.get_direction();
+	SDL_IntersectRect(&_player.get_bounding_box(), &game_object.get_bounding_box(), &intersection);
 
-	Vector2f distance_to_object = game_object.get_position() - player_position;
-	Vector2f abs_direction(player_direction.getX() * player_direction.getX(), player_direction.getY() * player_direction.getY());
-	Vector2f backward_distance_correction(distance_to_object.getX() * abs_direction.getX(), distance_to_object.getY() * abs_direction.getY());
+	Vector2f reversed_direction = _player.get_direction() * -1.0f;
 
-	Vector2f reversed_direction = player_direction * -1.0f;
+	Vector2f offset(intersection.w * reversed_direction.getX(), intersection.h * reversed_direction.getY());
 
-	Size half_size_sum = _player.get_half_size() + game_object.get_half_size();
-
-	Vector2f supposed_position_offset(half_size_sum.width * reversed_direction.getX(), half_size_sum.height * reversed_direction.getY());
-
-	Vector2f new_position = player_position + backward_distance_correction + supposed_position_offset;
-
-	_player.set_position(new_position);
+	_player.set_position(_player.get_position() + offset);
 }
