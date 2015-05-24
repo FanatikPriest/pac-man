@@ -185,5 +185,8 @@
     <ClInclude Include="src\models\power_up.h">
       <Filter>Source Files\models</Filter>
     </ClInclude>
+    <ClInclude Include="src\utilities\map_loader.h">
+      <Filter>Source Files\utilities</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

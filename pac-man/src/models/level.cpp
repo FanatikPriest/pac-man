@@ -1,10 +1,11 @@
 #include "level.h"
 
 #include "../application_settings.h"
+#include "../utilities/map_loader.h"
 
 Level::Level()
 {
-	create_tiles_map();
+	load_map();
 
 	create_tiles();
 	create_pac_dots();
@@ -18,24 +19,24 @@ Level::~Level()
 	delete_power_ups();
 	delete_pac_dots();
 	delete_tiles();
-
-	delete[] _tiles_map;
 }
 
-void Level::create_tiles_map()
+void Level::load_map()
 {
-	_tile_rows    = 7;
-	_tile_columns = 7;
+	_tile_rows    = MapLoader::ROWS;
+	_tile_columns = MapLoader::COLUMNS;
 
-	_tiles_map = new bool[_tile_rows * _tile_columns] {
-		true,  true,  true,  true,  true,  true,  true,
-		true,  false, false, false, false, false, true,
-		true,  false, true,  false, true,  false, true,
-		true,  false, false, false, false, false, true,
-		true,  false, true,  false, true,  false, true,
-		true,  false, false, false, false, false, true,
-		true,  true,  true,  true,  true,  true,  true,
-	};
+	_map = MapLoader::read_map_from_file();
+}
+
+void Level::delete_map()
+{
+	for (int i = 0; i < _tile_rows; i++)
+	{
+		delete[] _map[i];
+	}
+
+	delete[] _map;
 }
 
 void Level::create_tiles()
@@ -44,25 +45,25 @@ void Level::create_tiles()
 
 	_tiles = new Tile*[get_tiles_count()];
 
+	int count = 0;
+
 	for (int i = 0; i < _tile_rows; i++)
 	{
 		for (int j = 0; j < _tile_columns; j++)
 		{
-			int index = i * _tile_columns + j;
+			_tiles[count] = create_tile(size, size, i, j);
 
-			_tiles[index] = create_tile(size, size, i, j);
+			count++;
 		}
 	}
 }
 
 Tile* Level::create_tile(float width, float height, int row, int column) const
 {
-	float x = row * width + width / 2.0f;
-	float y = column * height + height / 2.0f;
+	float x = column * height + height / 2.0f;
+	float y = row * width + width / 2.0f;
 
-	int index = row * _tile_rows + column;
-
-	bool is_rigid = _tiles_map[index];
+	bool is_rigid = _map[row][column] == 'x';
 
 	return new Tile(x, y, height, width, row, column, is_rigid);
 }
@@ -93,9 +94,7 @@ void Level::create_pac_dots()
 	{
 		for (int j = 0; j < _tile_columns; j++)
 		{
-			int index = i * _tile_columns + j;
-
-			if (!_tiles_map[index])
+			if (_map[i][j] == 'd')
 			{
 				_pac_dots[_pac_dots_count] = create_pac_dot(size, size, i, j);
 				_pac_dots_count++;
@@ -108,8 +107,8 @@ PacDot* Level::create_pac_dot(float width, float height, int row, int column) co
 {
 	float tile_size = ApplicationSettings::GAME_OBJECT_SIZE;
 
-	float x = row    * tile_size + tile_size / 2.0f;
-	float y = column * tile_size + tile_size / 2.0f;
+	float x = column * tile_size + tile_size / 2.0f;
+	float y = row    * tile_size + tile_size / 2.0f;
 
 	return new PacDot(x, y, height, width);
 }
@@ -130,22 +129,30 @@ void Level::create_power_ups()
 {
 	float size = ApplicationSettings::POWER_UP_SIZE;
 
-	_power_ups_count = 4;
+	_power_ups = new PowerUp*[get_tiles_count()];
 
-	_power_ups = new PowerUp*[_power_ups_count];
+	_power_ups_count = 0;
 
-	_power_ups[0] = create_power_up(size, size, 1, 1);
-	_power_ups[1] = create_power_up(size, size, 1, _tile_columns - 2);
-	_power_ups[2] = create_power_up(size, size, _tile_rows - 2, 1);
-	_power_ups[3] = create_power_up(size, size, _tile_rows - 2, _tile_rows - 2);
+	for (int i = 0; i < _tile_rows; i++)
+	{
+		for (int j = 0; j < _tile_columns; j++)
+		{
+			if (_map[i][j] == 'p')
+			{
+				_power_ups[_power_ups_count] = create_power_up(size, size, i, j);
+
+				_power_ups_count++;
+			}
+		}
+	}
 }
 
 PowerUp* Level::create_power_up(float width, float height, int row, int column) const
 {
 	float tile_size = ApplicationSettings::GAME_OBJECT_SIZE;
 
-	float x = row    * tile_size + tile_size / 2.0f;
-	float y = column * tile_size + tile_size / 2.0f;
+	float x = column * tile_size + tile_size / 2.0f;
+	float y = row    * tile_size + tile_size / 2.0f;
 
 	return new PowerUp(x, y, height, width);
 }

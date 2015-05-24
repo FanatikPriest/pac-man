@@ -17,6 +17,8 @@ public:
 	int get_tile_columns() const;
 	int get_tiles_count() const;
 
+	char** get_map() const;
+
 	Tile** get_tiles() const;
 	Tile*  get_tile_at(int x, int y) const;
 	Tile*  get_tile_at(Vector2f position) const;
@@ -36,13 +38,15 @@ private:
 	int _pac_dots_count;
 	int _power_ups_count;
 
-	bool*     _tiles_map;
+	char** _map;
+
 	Tile**    _tiles;
 	PacDot**  _pac_dots;
 	PowerUp** _power_ups;
 	Player    _player;
 
-	void  create_tiles_map();
+	void load_map();
+	void delete_map();
 
 	void  create_tiles();
 	Tile* create_tile(float width, float height, int row, int column) const;
@@ -71,6 +75,11 @@ inline int Level::get_tile_columns() const
 	return _tile_columns;
 }
 
+inline char** Level::get_map() const
+{
+	return _map;
+}
+
 inline Tile** Level::get_tiles() const
 {
 	return _tiles;
@@ -96,7 +105,7 @@ inline Tile* Level::get_tile_at(int x, int y) const
 		return NULL;
 	}
 
-	int index = x * _tile_columns + y;
+	int index = y * _tile_columns + x;
 
 	return _tiles[index];
 }

@@ -8,10 +8,10 @@ void TileRenderer::set_color()
 {
 	if (_tile.is_rigid())
 	{
-		SDL_SetRenderDrawColor(_renderer, 0x00, 0x00, 0xFF, 0xFF); // blue
+		SDL_SetRenderDrawColor(_renderer, 0x00, 0x00, 0xA0, 0xFF); // blue
 	}
 	else
 	{
-		SDL_SetRenderDrawColor(_renderer, 0x00, 0x00, 0x00, 0x00); // white
+		SDL_SetRenderDrawColor(_renderer, 0x00, 0x00, 0x00, 0x00); // black
 	}
 }
