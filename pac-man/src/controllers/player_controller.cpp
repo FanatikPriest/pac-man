@@ -9,17 +9,22 @@ void PlayerController::update()
 	move_player();
 }
 
-void PlayerController::handle_movement_collision(const GameObject& game_object)
+void PlayerController::handle_movement_collision(const Tile& tile)
 {
 	SDL_Rect intersection;
 
-	SDL_IntersectRect(&_player.get_bounding_box(), &game_object.get_bounding_box(), &intersection);
+	SDL_IntersectRect(&_player.get_bounding_box(), &tile.get_bounding_box(), &intersection);
 
 	Vector2f reversed_direction = _player.get_direction() * -1.0f;
 
 	Vector2f offset(intersection.w * reversed_direction.getX(), intersection.h * reversed_direction.getY());
 
 	_player.set_position(_player.get_position() + offset);
+}
+
+void PlayerController::handle_pac_dot_collision(PacDot& pac_dot)
+{
+	pac_dot.set_collected(true);
 }
 
 void PlayerController::move_player()

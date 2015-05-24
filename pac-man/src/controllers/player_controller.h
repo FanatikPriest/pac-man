@@ -2,6 +2,7 @@
 
 #include "../models/player.h"
 #include "../models/tile.h"
+#include "../models/pac_dot.h"
 
 class PlayerController
 {
@@ -10,7 +11,8 @@ public:
 
 	void update();
 
-	void handle_movement_collision(const GameObject& game_object);
+	void handle_movement_collision(const Tile& tile);
+	void handle_pac_dot_collision(PacDot& pac_dot);
 
 private:
 	Player& _player;

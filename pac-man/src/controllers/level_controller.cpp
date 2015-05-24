@@ -11,6 +11,8 @@ void LevelController::update()
 	player_controller.update();
 
 	handle_tile_collisions(player_controller);
+
+	handle_pac_dots_collisions(player_controller);
 }
 
 void LevelController::handle_tile_collisions(PlayerController& player_controller)
@@ -19,17 +21,33 @@ void LevelController::handle_tile_collisions(PlayerController& player_controller
 
 	Tile** tiles = _level.get_tiles();
 
-	GameObject** objects = new GameObject*[count];
+	for (int i = 0; i < count; i++)
+	{
+		Tile* tile = tiles[i];
+
+		if (CollisionDetector::has_collision(_level._player, *tile))
+		{
+			player_controller.handle_movement_collision(*tile);
+
+			break;
+		}
+	}
+}
+
+void LevelController::handle_pac_dots_collisions(PlayerController& player_controller)
+{
+	int count = _level.get_pac_dots_count();
+
+	PacDot** pac_dots = _level.get_pac_dots();
 
 	for (int i = 0; i < count; i++)
 	{
-		objects[i] = dynamic_cast<GameObject*>(tiles[i]);
+		PacDot* pac_dot = pac_dots[i];
+
+		if (CollisionDetector::has_collision(_level._player, *pac_dot))
+		{
+			player_controller.handle_pac_dot_collision(*pac_dot);
+		}
 	}
 
-	const GameObject* collision = CollisionDetector::collides_with(_level._player, objects, count);
-
-	if (collision != NULL)
-	{
-		player_controller.handle_movement_collision(*collision);
-	}
 }
