@@ -7,16 +7,16 @@ Level::Level()
 	create_tiles_map();
 
 	create_tiles();
-
 	create_pac_dots();
+	create_power_ups();
 
 	create_player(45.0f, 45.0f);
 }
 
 Level::~Level()
 {
+	delete_power_ups();
 	delete_pac_dots();
-
 	delete_tiles();
 
 	delete[] _tiles_map;
@@ -124,6 +124,42 @@ void Level::delete_pac_dots()
 	}
 
 	delete[] _pac_dots;
+}
+
+void Level::create_power_ups()
+{
+	float size = ApplicationSettings::POWER_UP_SIZE;
+
+	_power_ups_count = 4;
+
+	_power_ups = new PowerUp*[_power_ups_count];
+
+	_power_ups[0] = create_power_up(size, size, 1, 1);
+	_power_ups[1] = create_power_up(size, size, 1, _tile_columns - 2);
+	_power_ups[2] = create_power_up(size, size, _tile_rows - 2, 1);
+	_power_ups[3] = create_power_up(size, size, _tile_rows - 2, _tile_rows - 2);
+}
+
+PowerUp* Level::create_power_up(float width, float height, int row, int column) const
+{
+	float tile_size = ApplicationSettings::GAME_OBJECT_SIZE;
+
+	float x = row    * tile_size + tile_size / 2.0f;
+	float y = column * tile_size + tile_size / 2.0f;
+
+	return new PowerUp(x, y, height, width);
+}
+
+void Level::delete_power_ups()
+{
+	int power_ups_count = get_power_ups_count();
+
+	for (int i = 0; i < power_ups_count; i++)
+	{
+		delete _power_ups[i];
+	}
+
+	delete[] _power_ups;
 }
 
 void Level::create_player(float x = 0.0f, float y = 0.0f)

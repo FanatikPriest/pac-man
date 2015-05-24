@@ -13,6 +13,8 @@ void LevelRenderer::render()
 
 	render_pac_dots();
 
+	render_power_ups();
+
 	render_player();
 }
 
@@ -39,6 +41,20 @@ void LevelRenderer::render_pac_dots()
 	for (int i = 0; i < pac_dots_count; i++)
 	{
 		CollectableRenderer collectable_renderer(*pac_dots[i], _renderer);
+
+		collectable_renderer.render();
+	}
+}
+
+void LevelRenderer::render_power_ups()
+{
+	PowerUp** power_ups = _level.get_power_ups();
+
+	int power_ups_count = _level.get_power_ups_count();
+
+	for (int i = 0; i < power_ups_count; i++)
+	{
+		CollectableRenderer collectable_renderer(*power_ups[i], _renderer);
 
 		collectable_renderer.render();
 	}
