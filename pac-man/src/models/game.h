@@ -6,7 +6,7 @@
 class Game
 {
 private:
-	Level  _level;
+	Level _level;
 
 	friend class GameController;
 	friend class GameRenderer;

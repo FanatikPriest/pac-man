@@ -35,8 +35,7 @@ inline Vector2f MovingObject::get_direction() const
 
 inline void MovingObject::set_direction(Vector2f direction)
 {
-	_direction = direction;
-	_direction.normalize();
+	set_direction(direction.getX(), direction.getY());
 }
 
 inline void MovingObject::set_direction(float dx, float dy)

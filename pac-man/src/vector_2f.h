@@ -16,6 +16,12 @@ public:
 	inline void normalize()
 	{
 		float magnitude = getMagnitude();
+
+		if (magnitude == 0.0f)
+		{
+			return;
+		}
+
 		_x /= magnitude;
 		_y /= magnitude;
 	}

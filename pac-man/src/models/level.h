@@ -2,6 +2,8 @@
 
 #include "tile.h"
 #include "player.h"
+#include "../application_settings.h"
+
 
 class Level
 {
@@ -14,7 +16,10 @@ public:
 	int get_tiles_count() const;
 
 	Tile** get_tiles() const;
+	Tile*  get_tile_at(int x, int y) const;
+	Tile*  get_tile_at(Vector2f position) const;
 	const Player& get_player() const;
+
 
 private:
 	int _tile_rows;
@@ -47,6 +52,29 @@ inline int Level::get_tile_columns() const
 inline Tile** Level::get_tiles() const
 {
 	return _tiles;
+}
+
+/*
+* x and y are zero-based indices.
+*/
+inline Tile* Level::get_tile_at(int x, int y) const
+{
+	if (x < 0 || y < 0 || x >= _tile_rows || y >= _tile_columns)
+	{
+		return NULL;
+	}
+
+	int index = x * _tile_columns + y;
+
+	return _tiles[index];
+}
+
+inline Tile* Level::get_tile_at(Vector2f position) const
+{
+	int x = (int) (position.getX() / ApplicationSettings::GAME_OBJECT_SIZE);
+	int y = (int) (position.getY() / ApplicationSettings::GAME_OBJECT_SIZE);
+
+	return get_tile_at(x, y);
 }
 
 inline const Player& Level::get_player() const

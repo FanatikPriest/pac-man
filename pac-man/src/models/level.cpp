@@ -8,7 +8,7 @@ Level::Level()
 
 	create_tiles();
 
-	create_player(400.0f, 400.0f);
+	create_player(75.0f, 75.0f);
 }
 
 Level::~Level()
@@ -20,15 +20,17 @@ Level::~Level()
 
 void Level::create_tiles_map()
 {
-	_tile_rows    = 5;
-	_tile_columns = 5;
+	_tile_rows    = 7;
+	_tile_columns = 7;
 
-	_tiles_map = new bool[25] {
-		false, false, false, false, false,
-		false, false, false, false, false,
-		false, false, true,  false, false,
-		false, false, false, false, false,
-		false, false, false, false, false,
+	_tiles_map = new bool[_tile_rows * _tile_columns] {
+		true,  true,  true,  true,  true,  true,  true,
+		true,  false, false, false, false, false, true,
+		true,  false, true,  false, true,  false, true,
+		true,  false, false, false, false, false, true,
+		true,  false, true,  false, true,  false, true,
+		true,  false, false, false, false, false, true,
+		true,  true,  true,  true,  true,  true,  true,
 	};
 }
 
@@ -81,4 +83,5 @@ void Level::create_player(float x = 0.0f, float y = 0.0f)
 	float    speed = ApplicationSettings::PLAYER_SPEED;
 
 	_player = Player(position, size, direction, speed);
+	int i = 0;
 }

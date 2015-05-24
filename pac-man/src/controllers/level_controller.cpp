@@ -5,7 +5,9 @@ LevelController::LevelController(Level& level) : _level(level) {}
 
 void LevelController::update()
 {
-	PlayerController player_controller(_level._player);
+	Tile* underlying_tile = _level.get_tile_at(_level._player.get_position());
+
+	PlayerController player_controller(_level._player, underlying_tile);
 	player_controller.update();
 
 	handle_tile_collisions(player_controller);
