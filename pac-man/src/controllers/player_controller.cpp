@@ -22,9 +22,9 @@ void PlayerController::handle_movement_collision(const Tile& tile)
 	_player.set_position(_player.get_position() + offset);
 }
 
-void PlayerController::handle_pac_dot_collision(PacDot& pac_dot)
+void PlayerController::handle_collectable_collision(Collectable& collectable)
 {
-	pac_dot.set_collected(true);
+	collectable.set_collected(true);
 }
 
 void PlayerController::move_player()

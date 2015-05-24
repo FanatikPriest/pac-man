@@ -13,6 +13,8 @@ void LevelController::update()
 	handle_tile_collisions(player_controller);
 
 	handle_pac_dots_collisions(player_controller);
+
+	handle_power_ups_collisions(player_controller);
 }
 
 void LevelController::handle_tile_collisions(PlayerController& player_controller)
@@ -46,7 +48,27 @@ void LevelController::handle_pac_dots_collisions(PlayerController& player_contro
 
 		if (CollisionDetector::has_collision(_level._player, *pac_dot))
 		{
-			player_controller.handle_pac_dot_collision(*pac_dot);
+			player_controller.handle_collectable_collision(*pac_dot);
+
+			break;
+		}
+	}
+
+}
+
+void LevelController::handle_power_ups_collisions(PlayerController& player_controller)
+{
+	int count = _level.get_power_ups_count();
+
+	PowerUp** power_ups = _level.get_power_ups();
+
+	for (int i = 0; i < count; i++)
+	{
+		PowerUp* power_up = power_ups[i];
+
+		if (CollisionDetector::has_collision(_level._player, *power_up))
+		{
+			player_controller.handle_collectable_collision(*power_up);
 		}
 	}
 
