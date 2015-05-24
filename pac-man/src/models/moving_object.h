@@ -10,8 +10,8 @@ class MovingObject : public GameObject
 {
 public:
 	MovingObject();
-	MovingObject(Vector2f position, Size size, Vector2f direction, float speed, bool is_rigid);
-	MovingObject(float x, float y, float height, float width, float dx, float dy, float speed, bool is_rigid);
+	MovingObject(Vector2f position, Size size, bool is_rigid, Vector2f direction, float speed);
+	MovingObject(float x, float y, float height, float width, bool is_rigid, float dx, float dy, float speed);
 	
 	Vector2f get_direction() const;
 	void     set_direction(Vector2f direction);

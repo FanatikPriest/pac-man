@@ -14,5 +14,6 @@ private:
 	const Level& _level;
 
 	void render_tiles();
+	void render_pac_dots();
 	void render_player();
 };

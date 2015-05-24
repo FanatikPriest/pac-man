@@ -11,13 +11,9 @@ public:
 
 protected:
 	SDL_Renderer* _renderer;
-
-	virtual void set_color();
 };
 
 inline BaseRenderer::BaseRenderer(SDL_Renderer* renderer)
 {
 	_renderer = renderer;
 }
-
-inline void BaseRenderer::set_color() {}

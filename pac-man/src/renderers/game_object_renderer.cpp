@@ -7,6 +7,8 @@ GameObjectRenderer::GameObjectRenderer(const GameObject& game_object, SDL_Render
 
 void GameObjectRenderer::render()
 {
+	set_color();
+
 	render_object();
 
 	render_center_point();
@@ -16,8 +18,6 @@ void GameObjectRenderer::render()
 
 void GameObjectRenderer::render_object()
 {
-	set_color();
-
 	SDL_RenderFillRect(_renderer, &_game_object.get_bounding_box());
 }
 

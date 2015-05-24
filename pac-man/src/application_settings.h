@@ -9,8 +9,10 @@ namespace ApplicationSettings
 	static const int TICKS_PER_FRAME       = 1000 / FRAMES_PER_SECOND_CAP;
 
 	// Game settings:
-	static const float GAME_OBJECT_SIZE = 50.0f;
-	static const float PLAYER_SPEED     = 20.0f;
+	static const float GAME_OBJECT_SIZE = 30.0f;
+	static const float PLAYER_SPEED     = 18.0f;
+	static const float PAC_DOT_SIZE     = 6.0f;
+	static const float POWER_UP_SIZE    = 10.0f;
 
 	// Debugging
 	static const bool DISPLAY_CENTER_POINTS   = false;
