@@ -10,7 +10,7 @@ Level::Level()
 	create_tiles();
 	create_pac_dots();
 	create_power_ups();
-
+	create_ghosts();
 
 	float x = 14.0f * ApplicationSettings::GAME_OBJECT_SIZE;
 	float y = 22.5f * ApplicationSettings::GAME_OBJECT_SIZE;
@@ -19,6 +19,7 @@ Level::Level()
 
 Level::~Level()
 {
+	delete_ghosts();
 	delete_power_ups();
 	delete_pac_dots();
 	delete_tiles();
@@ -119,9 +120,7 @@ PacDot* Level::create_pac_dot(float width, float height, int row, int column) co
 
 void Level::delete_pac_dots()
 {
-	int pac_dots_count = get_pac_dots_count();
-
-	for (int i = 0; i < pac_dots_count; i++)
+	for (int i = 0; i < _pac_dots_count; i++)
 	{
 		delete _pac_dots[i];
 	}
@@ -164,14 +163,56 @@ PowerUp* Level::create_power_up(float width, float height, int row, int column) 
 
 void Level::delete_power_ups()
 {
-	int power_ups_count = get_power_ups_count();
-
-	for (int i = 0; i < power_ups_count; i++)
+	for (int i = 0; i < _power_ups_count; i++)
 	{
 		delete _power_ups[i];
 	}
 
 	delete[] _power_ups;
+}
+
+void Level::create_ghosts()
+{
+	_ghosts = new Ghost*[get_tiles_count()];
+
+	_ghosts_count = 0;
+
+	for (int i = 0; i < _tile_rows; i++)
+	{
+		for (int j = 0; j < _tile_columns; j++)
+		{
+			if (_map[i][j] == 'g')
+			{
+				_ghosts[_ghosts_count] = create_ghost(i, j);
+
+				_ghosts_count++;
+			}
+		}
+	}
+}
+
+Ghost* Level::create_ghost(int row, int column) const
+{
+	float tile_size = ApplicationSettings::GAME_OBJECT_SIZE;
+
+	float x = column * tile_size + tile_size / 2.0f;
+	float y = row    * tile_size + tile_size / 2.0f;
+
+	Vector2f position(x, y);
+	Size     size(tile_size, tile_size);
+	Vector2f direction(0.0f, 0.0f);
+	float    speed = ApplicationSettings::GHOST_SPEED;
+
+	return new Ghost(position, size, direction, speed);
+}
+void Level::delete_ghosts()
+{
+	for (int i = 0; i < _ghosts_count; i++)
+	{
+		delete _ghosts[i];
+	}
+
+	delete[] _ghosts;
 }
 
 void Level::create_player(float x = 0.0f, float y = 0.0f)

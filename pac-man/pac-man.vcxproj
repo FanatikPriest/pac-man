@@ -13,6 +13,7 @@
   <ItemGroup>
     <ClCompile Include="src\application.cpp" />
     <ClCompile Include="src\controllers\game_controller.cpp" />
+    <ClCompile Include="src\controllers\ghost_controller.cpp" />
     <ClCompile Include="src\controllers\level_controller.cpp" />
     <ClCompile Include="src\controllers\moving_object_controller.cpp" />
     <ClCompile Include="src\controllers\player_controller.cpp" />
@@ -21,6 +22,7 @@
     <ClCompile Include="src\models\collectable.cpp" />
     <ClCompile Include="src\models\game.cpp" />
     <ClCompile Include="src\models\game_object.cpp" />
+    <ClCompile Include="src\models\ghost.cpp" />
     <ClCompile Include="src\models\level.cpp" />
     <ClCompile Include="src\models\moving_object.cpp" />
     <ClCompile Include="src\models\pac_dot.cpp" />
@@ -30,6 +32,7 @@
     <ClCompile Include="src\renderers\collectable_renderer.cpp" />
     <ClCompile Include="src\renderers\game_object_renderer.cpp" />
     <ClCompile Include="src\renderers\game_renderer.cpp" />
+    <ClCompile Include="src\renderers\ghost_renderer.cpp" />
     <ClCompile Include="src\renderers\level_renderer.cpp" />
     <ClCompile Include="src\renderers\player_renderer.cpp" />
     <ClCompile Include="src\renderers\score_renderer.cpp" />
@@ -42,6 +45,7 @@
     <ClInclude Include="src\application.h" />
     <ClInclude Include="src\application_settings.h" />
     <ClInclude Include="src\controllers\game_controller.h" />
+    <ClInclude Include="src\controllers\ghost_controller.h" />
     <ClInclude Include="src\controllers\level_controller.h" />
     <ClInclude Include="src\controllers\moving_object_controller.h" />
     <ClInclude Include="src\controllers\player_controller.h" />
@@ -50,6 +54,7 @@
     <ClInclude Include="src\models\game.h" />
     <ClInclude Include="src\models\game_object.h" />
     <ClInclude Include="src\models\game_state.h" />
+    <ClInclude Include="src\models\ghost.h" />
     <ClInclude Include="src\models\level.h" />
     <ClInclude Include="src\models\moving_object.h" />
     <ClInclude Include="src\models\pac_dot.h" />
@@ -61,6 +66,7 @@
     <ClInclude Include="src\renderers\collectable_renderer.h" />
     <ClInclude Include="src\renderers\game_object_renderer.h" />
     <ClInclude Include="src\renderers\game_renderer.h" />
+    <ClInclude Include="src\renderers\ghost_renderer.h" />
     <ClInclude Include="src\renderers\level_renderer.h" />
     <ClInclude Include="src\renderers\player_renderer.h" />
     <ClInclude Include="src\renderers\score_renderer.h" />

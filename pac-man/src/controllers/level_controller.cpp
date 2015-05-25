@@ -5,6 +5,13 @@ LevelController::LevelController(Level& level) : _level(level) {}
 
 void LevelController::update()
 {
+	update_player();
+
+	update_ghosts();
+}
+
+void LevelController::update_player()
+{
 	Tile* underlying_tile = _level.get_tile_at(_level._player.get_position());
 
 	PlayerController player_controller(_level._player, underlying_tile);
@@ -17,7 +24,25 @@ void LevelController::update()
 	handle_power_ups_collisions(player_controller);
 }
 
-void LevelController::handle_tile_collisions(PlayerController& player_controller)
+void LevelController::update_ghosts()
+{
+	for (int i = 0; i < _level._ghosts_count; i++)
+	{
+		Ghost* ghost = _level._ghosts[i];
+
+		Tile* underlying_tile = _level.get_tile_at(ghost->get_position());
+
+		GhostController ghost_controller(*ghost, underlying_tile);
+
+		ghost_controller.set_direction(_level._player.get_direction()); // TODO temporary movment, apply AI
+
+		ghost_controller.update();
+
+		handle_tile_collisions(ghost_controller);
+	}
+}
+
+void LevelController::handle_tile_collisions(MovingObjectController& moving_object_controller)
 {
 	int count = _level.get_tiles_count();
 
@@ -27,9 +52,9 @@ void LevelController::handle_tile_collisions(PlayerController& player_controller
 	{
 		Tile* tile = tiles[i];
 
-		if (CollisionDetector::has_collision(_level._player, *tile))
+		if (CollisionDetector::has_collision(moving_object_controller.get_moving_object(), *tile))
 		{
-			player_controller.handle_movement_collision(*tile);
+			moving_object_controller.handle_movement_collision(*tile);
 
 			break;
 		}

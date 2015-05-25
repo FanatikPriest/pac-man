@@ -16,5 +16,6 @@ private:
 	void render_tiles();
 	void render_pac_dots();
 	void render_power_ups();
+	void render_ghosts();
 	void render_player();
 };

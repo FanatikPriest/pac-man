@@ -3,9 +3,10 @@
 #include "tile.h"
 #include "pac_dot.h"
 #include "power_up.h"
+#include "ghost.h"
 #include "player.h"
-#include "../application_settings.h"
 
+#include "../application_settings.h"
 
 class Level
 {
@@ -32,14 +33,17 @@ public:
 	int       get_power_ups_count() const;
 	PowerUp** get_power_ups() const;
 
-	const Player& get_player() const;
+	int     get_ghosts_count() const;
+	Ghost** get_ghosts() const;
 
+	const Player& get_player() const;
 
 private:
 	int _tile_rows;
 	int _tile_columns;
 	int _pac_dots_count;
 	int _power_ups_count;
+	int _ghosts_count;
 	int _pac_dots_collected;
 	int _power_ups_collected;
 
@@ -48,6 +52,7 @@ private:
 	Tile**    _tiles;
 	PacDot**  _pac_dots;
 	PowerUp** _power_ups;
+	Ghost**   _ghosts;
 	Player    _player;
 
 	void load_map();
@@ -64,6 +69,10 @@ private:
 	void     create_power_ups();
 	PowerUp* create_power_up(float width, float height, int row, int column) const;
 	void     delete_power_ups();
+
+	void   create_ghosts();
+	Ghost* create_ghost(int row, int column) const;
+	void   delete_ghosts();
 
 	void  create_player(float x, float y);
 
@@ -98,6 +107,11 @@ inline PacDot** Level::get_pac_dots() const
 inline PowerUp** Level::get_power_ups() const
 {
 	return _power_ups;
+}
+
+inline Ghost** Level::get_ghosts() const
+{
+	return _ghosts;
 }
 
 /*
@@ -141,6 +155,11 @@ inline int Level::get_pac_dots_count() const
 inline int Level::get_power_ups_count() const
 {
 	return _power_ups_count;
+}
+
+inline int Level::get_ghosts_count() const
+{
+	return _ghosts_count;
 }
 
 inline int Level::get_collected_items_count() const

@@ -105,6 +105,15 @@
     <ClCompile Include="src\utilities\fonts.cpp">
       <Filter>Source Files\utilities</Filter>
     </ClCompile>
+    <ClCompile Include="src\models\ghost.cpp">
+      <Filter>Source Files\models</Filter>
+    </ClCompile>
+    <ClCompile Include="src\controllers\ghost_controller.cpp">
+      <Filter>Source Files\controllers</Filter>
+    </ClCompile>
+    <ClCompile Include="src\renderers\ghost_renderer.cpp">
+      <Filter>Source Files\renderers</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\application.h">
@@ -205,6 +214,15 @@
     </ClInclude>
     <ClInclude Include="src\models\game_state.h">
       <Filter>Source Files\models</Filter>
+    </ClInclude>
+    <ClInclude Include="src\models\ghost.h">
+      <Filter>Source Files\models</Filter>
+    </ClInclude>
+    <ClInclude Include="src\controllers\ghost_controller.h">
+      <Filter>Source Files\controllers</Filter>
+    </ClInclude>
+    <ClInclude Include="src\renderers\ghost_renderer.h">
+      <Filter>Source Files\renderers</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
