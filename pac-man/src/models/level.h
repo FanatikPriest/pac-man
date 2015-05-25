@@ -100,7 +100,7 @@ inline PowerUp** Level::get_power_ups() const
 */
 inline Tile* Level::get_tile_at(int x, int y) const
 {
-	if (x < 0 || y < 0 || x >= _tile_rows || y >= _tile_columns)
+	if (x < 0 || y < 0 || x >= _tile_columns || y >= _tile_rows)
 	{
 		return NULL;
 	}
