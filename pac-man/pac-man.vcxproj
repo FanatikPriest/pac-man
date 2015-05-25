@@ -32,9 +32,11 @@
     <ClCompile Include="src\renderers\game_renderer.cpp" />
     <ClCompile Include="src\renderers\level_renderer.cpp" />
     <ClCompile Include="src\renderers\player_renderer.cpp" />
+    <ClCompile Include="src\renderers\score_renderer.cpp" />
     <ClCompile Include="src\renderers\tile_renderer.cpp" />
     <ClCompile Include="src\utilities\collision_detector.cpp" />
     <ClCompile Include="src\utilities\delta.cpp" />
+    <ClCompile Include="src\utilities\fonts.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\application.h" />
@@ -52,6 +54,7 @@
     <ClInclude Include="src\models\pac_dot.h" />
     <ClInclude Include="src\models\player.h" />
     <ClInclude Include="src\models\power_up.h" />
+    <ClInclude Include="src\models\score.h" />
     <ClInclude Include="src\models\tile.h" />
     <ClInclude Include="src\renderers\base_renderer.h" />
     <ClInclude Include="src\renderers\collectable_renderer.h" />
@@ -59,11 +62,13 @@
     <ClInclude Include="src\renderers\game_renderer.h" />
     <ClInclude Include="src\renderers\level_renderer.h" />
     <ClInclude Include="src\renderers\player_renderer.h" />
+    <ClInclude Include="src\renderers\score_renderer.h" />
     <ClInclude Include="src\renderers\tile_renderer.h" />
     <ClInclude Include="src\size.h" />
     <ClInclude Include="src\utilities\collision_detector.h" />
     <ClInclude Include="src\utilities\delta.h" />
     <ClInclude Include="src\utilities\directions.h" />
+    <ClInclude Include="src\utilities\fonts.h" />
     <ClInclude Include="src\utilities\map_loader.h" />
     <ClInclude Include="src\vector_2f.h" />
   </ItemGroup>
@@ -96,8 +101,8 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <IncludePath>SDL2-2.0.3\include;$(IncludePath)</IncludePath>
-    <LibraryPath>SDL2-2.0.3\lib\x86;$(LibraryPath)</LibraryPath>
+    <IncludePath>SDL2-2.0.3\include;SDL2_image-2.0.0\include;SDL2_ttf-2.0.12\include;$(IncludePath)</IncludePath>
+    <LibraryPath>SDL2-2.0.3\lib\x86;SDL2_image-2.0.0\lib\x86;SDL2_ttf-2.0.12\lib\x86;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -107,7 +112,7 @@
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>SDL2.lib;SDL2main.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>SDL2.lib;SDL2main.lib;SDL2_image.lib;SDL2_ttf.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <SubSystem>Windows</SubSystem>
     </Link>
   </ItemDefinitionGroup>

@@ -25,6 +25,7 @@ void PlayerController::handle_movement_collision(const Tile& tile)
 void PlayerController::handle_collectable_collision(Collectable& collectable)
 {
 	collectable.set_collected(true);
+	_player._score.add();
 }
 
 void PlayerController::move_player()

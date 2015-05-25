@@ -99,6 +99,12 @@
     <ClCompile Include="src\models\power_up.cpp">
       <Filter>Source Files\models</Filter>
     </ClCompile>
+    <ClCompile Include="src\renderers\score_renderer.cpp">
+      <Filter>Source Files\renderers</Filter>
+    </ClCompile>
+    <ClCompile Include="src\utilities\fonts.cpp">
+      <Filter>Source Files\utilities</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\application.h">
@@ -186,6 +192,15 @@
       <Filter>Source Files\models</Filter>
     </ClInclude>
     <ClInclude Include="src\utilities\map_loader.h">
+      <Filter>Source Files\utilities</Filter>
+    </ClInclude>
+    <ClInclude Include="src\models\score.h">
+      <Filter>Source Files\models</Filter>
+    </ClInclude>
+    <ClInclude Include="src\renderers\score_renderer.h">
+      <Filter>Source Files\renderers</Filter>
+    </ClInclude>
+    <ClInclude Include="src\utilities\fonts.h">
       <Filter>Source Files\utilities</Filter>
     </ClInclude>
   </ItemGroup>

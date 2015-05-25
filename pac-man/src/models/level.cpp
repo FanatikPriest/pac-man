@@ -11,7 +11,10 @@ Level::Level()
 	create_pac_dots();
 	create_power_ups();
 
-	create_player(45.0f, 45.0f);
+
+	float x = 14.0f * ApplicationSettings::GAME_OBJECT_SIZE;
+	float y = 22.5f * ApplicationSettings::GAME_OBJECT_SIZE;
+	create_player(x, y);
 }
 
 Level::~Level()

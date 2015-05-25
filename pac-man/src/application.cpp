@@ -1,11 +1,15 @@
+#include <SDL_ttf.h>
+
 #include "application.h"
 #include "application_settings.h"
 #include "keyboard_handler.h"
-#include "utilities\delta.h"
 
 #include "controllers\game_controller.h"
 
 #include "renderers\game_renderer.h"
+
+#include "utilities\delta.h"
+#include "utilities\fonts.h"
 
 
 Application::Application()
@@ -70,6 +74,11 @@ bool Application::initialize()
 
 	_renderer = SDL_CreateRenderer(_window, -1, SDL_RENDERER_ACCELERATED);
 
+	if (!Fonts::load_fonts())
+	{
+		return false;
+	}
+
 	return true;
 }
 
@@ -107,7 +116,7 @@ void Application::update()
 void Application::render()
 {
 	// fill with black to wipe previous frame
-	SDL_SetRenderDrawColor(_renderer, 0xFF, 0xFF, 0xFF, 0xFF);
+	SDL_SetRenderDrawColor(_renderer, 0x00, 0x00, 0x00, 0xFF);
 	SDL_RenderClear(_renderer);
 
 	GameRenderer game_renderer(_game, _renderer);
@@ -120,6 +129,10 @@ void Application::render()
 
 void Application::cleanup()
 {
+	Fonts::unload_fonts();
+
+	SDL_DestroyRenderer(_renderer);
+
 	SDL_DestroyWindow(_window);
 
 	SDL_Quit();
