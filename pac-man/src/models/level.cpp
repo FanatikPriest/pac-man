@@ -92,6 +92,7 @@ void Level::create_pac_dots()
 	_pac_dots = new PacDot*[tiles_count];
 
 	_pac_dots_count = 0;
+	_pac_dots_collected = 0;
 
 	for (int i = 0; i < _tile_rows; i++)
 	{
@@ -135,6 +136,7 @@ void Level::create_power_ups()
 	_power_ups = new PowerUp*[get_tiles_count()];
 
 	_power_ups_count = 0;
+	_power_ups_collected = 0;
 
 	for (int i = 0; i < _tile_rows; i++)
 	{

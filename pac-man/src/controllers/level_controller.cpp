@@ -50,10 +50,11 @@ void LevelController::handle_pac_dots_collisions(PlayerController& player_contro
 		{
 			player_controller.handle_collectable_collision(*pac_dot);
 
+			_level._pac_dots_collected++;
+
 			break;
 		}
 	}
-
 }
 
 void LevelController::handle_power_ups_collisions(PlayerController& player_controller)
@@ -69,7 +70,10 @@ void LevelController::handle_power_ups_collisions(PlayerController& player_contr
 		if (CollisionDetector::has_collision(_level._player, *power_up))
 		{
 			player_controller.handle_collectable_collision(*power_up);
+
+			_level._power_ups_collected++;
+
+			break;
 		}
 	}
-
 }

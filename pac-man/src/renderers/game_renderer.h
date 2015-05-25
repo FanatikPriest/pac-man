@@ -12,4 +12,9 @@ public:
 
 private:
 	const Game& _game;
+
+	void render_level();
+	void render_win_message();
+	void render_lose_message();
+	void render_message(const char* message);
 };

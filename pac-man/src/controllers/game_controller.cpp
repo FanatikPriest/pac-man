@@ -5,6 +5,11 @@ GameController::GameController(Game& game) : _game(game) {}
 
 void GameController::update()
 {
-	LevelController level_controller(_game._level);
-	level_controller.update();
+	_game.check_game_state();
+
+	if (_game._game_state == GameState::IN_PROGRESS)
+	{
+		LevelController level_controller(_game._level);
+		level_controller.update();
+	}
 }

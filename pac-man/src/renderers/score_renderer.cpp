@@ -12,7 +12,7 @@ ScoreRenderer::ScoreRenderer(const Score& score, SDL_Renderer* renderer)
 
 void ScoreRenderer::render()
 {
-	SDL_Color white = { 0xFF, 0xFF, 0xFF, 0xFF }; // white
+	SDL_Color white = { 0xFF, 0xFF, 0xFF, 0xFF };
 
 	std::string score_message = std::to_string(_score.get());
 

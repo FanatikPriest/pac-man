@@ -203,5 +203,8 @@
     <ClInclude Include="src\utilities\fonts.h">
       <Filter>Source Files\utilities</Filter>
     </ClInclude>
+    <ClInclude Include="src\models\game_state.h">
+      <Filter>Source Files\models</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

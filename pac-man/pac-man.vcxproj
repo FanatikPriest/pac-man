@@ -49,6 +49,7 @@
     <ClInclude Include="src\models\collectable.h" />
     <ClInclude Include="src\models\game.h" />
     <ClInclude Include="src\models\game_object.h" />
+    <ClInclude Include="src\models\game_state.h" />
     <ClInclude Include="src\models\level.h" />
     <ClInclude Include="src\models\moving_object.h" />
     <ClInclude Include="src\models\pac_dot.h" />

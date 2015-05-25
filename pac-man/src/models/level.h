@@ -23,6 +23,9 @@ public:
 	Tile*  get_tile_at(int x, int y) const;
 	Tile*  get_tile_at(Vector2f position) const;
 
+	int get_collected_items_count() const;
+	int get_collectables_count() const;
+
 	int      get_pac_dots_count() const;
 	PacDot** get_pac_dots() const;
 
@@ -37,6 +40,8 @@ private:
 	int _tile_columns;
 	int _pac_dots_count;
 	int _power_ups_count;
+	int _pac_dots_collected;
+	int _power_ups_collected;
 
 	char** _map;
 
@@ -136,4 +141,14 @@ inline int Level::get_pac_dots_count() const
 inline int Level::get_power_ups_count() const
 {
 	return _power_ups_count;
+}
+
+inline int Level::get_collected_items_count() const
+{
+	return _pac_dots_collected + _power_ups_collected;
+}
+
+inline int Level::get_collectables_count() const
+{
+	return get_pac_dots_count() + get_power_ups_count();
 }
