@@ -5,6 +5,8 @@
 
 Level::Level()
 {
+	_has_ghost_collision_occured = false;
+
 	load_map();
 
 	create_tiles();

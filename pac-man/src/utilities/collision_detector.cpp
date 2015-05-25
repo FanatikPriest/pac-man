@@ -29,5 +29,5 @@ bool CollisionDetector::has_collision(const GameObject& a, const GameObject& b)
 	SDL_Rect* a_box = &a.get_bounding_box();
 	SDL_Rect* b_box = &b.get_bounding_box();
 
-	return SDL_HasIntersection(a_box, b_box);
+	return SDL_HasIntersection(a_box, b_box) == SDL_TRUE;
 }

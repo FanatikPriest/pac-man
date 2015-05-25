@@ -38,6 +38,8 @@ public:
 
 	const Player& get_player() const;
 
+	bool has_ghost_collision_occured() const;
+
 private:
 	int _tile_rows;
 	int _tile_columns;
@@ -46,6 +48,8 @@ private:
 	int _ghosts_count;
 	int _pac_dots_collected;
 	int _power_ups_collected;
+
+	bool   _has_ghost_collision_occured;
 
 	char** _map;
 
@@ -170,4 +174,9 @@ inline int Level::get_collected_items_count() const
 inline int Level::get_collectables_count() const
 {
 	return get_pac_dots_count() + get_power_ups_count();
+}
+
+inline bool Level::has_ghost_collision_occured() const
+{
+	return _has_ghost_collision_occured;
 }

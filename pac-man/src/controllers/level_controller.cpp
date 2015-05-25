@@ -39,6 +39,8 @@ void LevelController::update_ghosts()
 		ghost_controller.update();
 
 		handle_tile_collisions(ghost_controller);
+
+		handle_ghost_collision(_level._player, *ghost);
 	}
 }
 
@@ -101,4 +103,13 @@ void LevelController::handle_power_ups_collisions(PlayerController& player_contr
 			break;
 		}
 	}
+}
+
+bool LevelController::handle_ghost_collision(const Player& player, const Ghost& ghost)
+{
+	bool result = CollisionDetector::has_collision(player, ghost);
+
+	_level._has_ghost_collision_occured = _level._has_ghost_collision_occured || result;
+
+	return result;
 }
