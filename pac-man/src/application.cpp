@@ -79,6 +79,8 @@ bool Application::initialize()
 		return false;
 	}
 
+	Delta::set();
+
 	return true;
 }
 

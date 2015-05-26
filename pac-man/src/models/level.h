@@ -123,20 +123,20 @@ inline Ghost** Level::get_ghosts() const
 */
 inline Tile* Level::get_tile_at(int x, int y) const
 {
-	if (x < 0 || y < 0 || x >= _tile_columns || y >= _tile_rows)
+	if (x < 0 || y < 0 || y >= _tile_columns || x >= _tile_rows)
 	{
 		return NULL;
 	}
 
-	int index = y * _tile_columns + x;
+	int index = x * _tile_columns + y;
 
 	return _tiles[index];
 }
 
 inline Tile* Level::get_tile_at(Vector2f position) const
 {
-	int x = (int) (position.getX() / ApplicationSettings::GAME_OBJECT_SIZE);
-	int y = (int) (position.getY() / ApplicationSettings::GAME_OBJECT_SIZE);
+	int x = (int) (position.getY() / ApplicationSettings::GAME_OBJECT_SIZE);
+	int y = (int) (position.getX() / ApplicationSettings::GAME_OBJECT_SIZE);
 
 	return get_tile_at(x, y);
 }

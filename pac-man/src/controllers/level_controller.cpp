@@ -32,9 +32,7 @@ void LevelController::update_ghosts()
 
 		Tile* underlying_tile = _level.get_tile_at(ghost->get_position());
 
-		GhostController ghost_controller(*ghost, underlying_tile);
-
-		ghost_controller.set_direction(_level._player.get_direction()); // TODO temporary movment, apply AI
+		GhostController ghost_controller(*ghost, _level, underlying_tile);
 
 		ghost_controller.update();
 
