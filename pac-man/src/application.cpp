@@ -11,7 +11,6 @@
 #include "utilities\delta.h"
 #include "utilities\fonts.h"
 
-
 Application::Application()
 {
 	_is_running     = true;

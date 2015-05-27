@@ -1,10 +1,13 @@
 #include "level_controller.h"
+#include "ghost_mode_controller.h"
 #include "../utilities/collision_detector.h"
 
 LevelController::LevelController(Level& level) : _level(level) {}
 
 void LevelController::update()
 {
+	GhostModeController::update();
+
 	update_player();
 
 	update_ghosts();

@@ -49,27 +49,42 @@ void Level::create_tiles()
 {
 	float size = ApplicationSettings::GAME_OBJECT_SIZE;
 
-	_tiles = new Tile*[get_tiles_count()];
+	int max_retreat_tiles = 4;
 
-	int count = 0;
+	_tiles         = new Tile*[get_tiles_count()];
+	_retreat_tiles = new Tile*[max_retreat_tiles];
+
+	int tiles_count = 0;
+	int retreat_tiles_count = 0;
 
 	for (int i = 0; i < _tile_rows; i++)
 	{
 		for (int j = 0; j < _tile_columns; j++)
 		{
-			_tiles[count] = create_tile(size, size, i, j);
+			char symbol   = _map[i][j];
+			bool is_rigid = symbol == 'x' || symbol == 'r';
 
-			count++;
+			Tile* new_tile = create_tile(size, size, i, j, is_rigid);
+
+			_tiles[tiles_count] = new_tile;
+
+			tiles_count++;
+
+			if (symbol == 'r' && retreat_tiles_count < max_retreat_tiles)
+			{
+				_retreat_tiles[retreat_tiles_count] = new_tile;
+
+				retreat_tiles_count++;
+			}
 		}
 	}
 }
 
-Tile* Level::create_tile(float width, float height, int row, int column) const
+Tile* Level::create_tile(float width, float height, int row, int column, bool is_rigid) const
 {
 	float x = column * height + height / 2.0f;
 	float y = row * width + width / 2.0f;
 
-	bool is_rigid = _map[row][column] == 'x';
 
 	return new Tile(x, y, height, width, row, column, is_rigid);
 }
@@ -132,22 +147,32 @@ void Level::delete_pac_dots()
 
 void Level::create_power_ups()
 {
+	int max_power_ups = 4;
+
 	float size = ApplicationSettings::POWER_UP_SIZE;
 
-	_power_ups = new PowerUp*[get_tiles_count()];
+	_power_ups_collected = 0;
+
+	_power_ups = new PowerUp*[max_power_ups];
 
 	_power_ups_count = 0;
-	_power_ups_collected = 0;
 
 	for (int i = 0; i < _tile_rows; i++)
 	{
 		for (int j = 0; j < _tile_columns; j++)
 		{
-			if (_map[i][j] == 'p')
+			if (_map[i][j] != 'u')
 			{
-				_power_ups[_power_ups_count] = create_power_up(size, size, i, j);
+				continue;
+			}
 
-				_power_ups_count++;
+			_power_ups[_power_ups_count] = create_power_up(size, size, i, j);
+
+			_power_ups_count++;
+
+			if (_power_ups_count == max_power_ups)
+			{
+				return;
 			}
 		}
 	}
@@ -175,7 +200,9 @@ void Level::delete_power_ups()
 
 void Level::create_ghosts()
 {
-	_ghosts = new Ghost*[get_tiles_count()];
+	int max_ghosts = 4;
+
+	_ghosts = new Ghost*[max_ghosts];
 
 	_ghosts_count = 0;
 
@@ -183,17 +210,26 @@ void Level::create_ghosts()
 	{
 		for (int j = 0; j < _tile_columns; j++)
 		{
-			if (_map[i][j] == 'g')
+			if (_map[i][j] != 'g')
 			{
-				_ghosts[_ghosts_count] = create_ghost(i, j);
+				continue;
+			}
 
-				_ghosts_count++;
+			int index = (3 + _ghosts_count) % 4;
+
+			_ghosts[_ghosts_count] = create_ghost(i, j, index);
+
+			_ghosts_count++;
+
+			if (_ghosts_count == max_ghosts)
+			{
+				return;
 			}
 		}
 	}
 }
 
-Ghost* Level::create_ghost(int row, int column) const
+Ghost* Level::create_ghost(int row, int column, int index) const
 {
 	float tile_size = ApplicationSettings::GAME_OBJECT_SIZE;
 
@@ -205,7 +241,7 @@ Ghost* Level::create_ghost(int row, int column) const
 	Vector2f direction(0.0f, 0.0f);
 	float    speed = ApplicationSettings::GHOST_SPEED;
 
-	return new Ghost(position, size, direction, speed);
+	return new Ghost(position, size, direction, speed, index);
 }
 void Level::delete_ghosts()
 {

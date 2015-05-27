@@ -1,16 +1,18 @@
 #include "ghost_controller.h"
-
+#include "ghost_mode_controller.h"
 #include "../utilities/directions.h"
 
 GhostController::GhostController(Ghost& ghost, const Level& level, Tile* underlying_tile)
 	: MovingObjectController(ghost, underlying_tile), _ghost(ghost), _level(level)
 {}
 
-void GhostController::move_object()
+void GhostController::update()
 {
+	_ghost.set_mode(GhostModeController::get_current_mode());
+
 	set_target();
 
-	MovingObjectController::move_object();
+	MovingObjectController::update();
 }
 
 void GhostController::set_target()
@@ -36,8 +38,8 @@ void GhostController::set_target()
 
 Vector2f GhostController::determine_next_target() const
 {
-	Vector2f* adjecent_tile_positions = get_adjecent_tile_positions();
-	Vector2f  player_position         = _level.get_player().get_position();
+	Vector2f* adjecent_tile_positions  = get_adjecent_tile_positions();
+	Vector2f  ultimate_target_position = determine_ultimate_target();
 
 	Vector2f nearest_to_ultimate_target;
 
@@ -52,7 +54,7 @@ Vector2f GhostController::determine_next_target() const
 			continue;
 		}
 
-		float distance_to_ultimate_target = (adjecent_tile - player_position).getMagnitude();
+		float distance_to_ultimate_target = (adjecent_tile - ultimate_target_position).getMagnitude();
 
 		if (distance_to_ultimate_target < magnitude)
 		{
@@ -110,6 +112,27 @@ Vector2f* GhostController::get_adjecent_tile_positions() const
 	}
 
 	return adjecent_tiles;
+}
+
+Vector2f GhostController::determine_ultimate_target() const
+{
+	switch (_ghost.get_mode())
+	{
+		case (GhostMode::CHASE) :
+		{
+			return _level.get_player().get_position();
+		}
+		case (GhostMode::SCATTER) :
+		{
+			return _level.get_retreat_tile_position(_ghost.get_index());
+		}
+		case (GhostMode::FRIGHTENED) :
+		{
+			return Vector2f();
+		}
+	}
+
+	return Vector2f();
 }
 
 void GhostController::change_ghost_direction()

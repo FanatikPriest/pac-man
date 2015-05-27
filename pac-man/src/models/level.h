@@ -40,6 +40,8 @@ public:
 
 	bool has_ghost_collision_occured() const;
 
+	Vector2f get_retreat_tile_position(int index) const;
+
 private:
 	int _tile_rows;
 	int _tile_columns;
@@ -54,6 +56,7 @@ private:
 	char** _map;
 
 	Tile**    _tiles;
+	Tile**    _retreat_tiles;
 	PacDot**  _pac_dots;
 	PowerUp** _power_ups;
 	Ghost**   _ghosts;
@@ -63,7 +66,7 @@ private:
 	void delete_map();
 
 	void  create_tiles();
-	Tile* create_tile(float width, float height, int row, int column) const;
+	Tile* create_tile(float width, float height, int row, int column, bool is_rigid) const;
 	void  delete_tiles();
 
 	void    create_pac_dots();
@@ -75,7 +78,7 @@ private:
 	void     delete_power_ups();
 
 	void   create_ghosts();
-	Ghost* create_ghost(int row, int column) const;
+	Ghost* create_ghost(int row, int column, int index) const;
 	void   delete_ghosts();
 
 	void  create_player(float x, float y);
@@ -179,4 +182,9 @@ inline int Level::get_collectables_count() const
 inline bool Level::has_ghost_collision_occured() const
 {
 	return _has_ghost_collision_occured;
+}
+
+inline Vector2f Level::get_retreat_tile_position(int index) const
+{
+	return _retreat_tiles[index]->get_position();
 }

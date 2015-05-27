@@ -6,5 +6,12 @@ GhostRenderer::GhostRenderer(const Ghost& ghost, SDL_Renderer* renderer)
 
 void GhostRenderer::set_color()
 {
-	SDL_SetRenderDrawColor(_renderer, 0xFF, 0x00, 0x00, 0xFF); // red
+	if (_ghost.get_mode() == GhostMode::SCATTER)
+	{
+		SDL_SetRenderDrawColor(_renderer, 0x00, 0xFF, 0x00, 0xFF); // green
+	}
+	else
+	{
+		SDL_SetRenderDrawColor(_renderer, 0xFF, 0x00, 0x00, 0xFF); // red
+	}
 }
