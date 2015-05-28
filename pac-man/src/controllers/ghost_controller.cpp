@@ -10,11 +10,28 @@ GhostController::GhostController(Ghost& ghost, const Level& level, Tile* underly
 
 void GhostController::update()
 {
-	_ghost.set_mode(GhostModeController::get_current_mode());
+	set_mode();
 
 	set_target();
 
 	MovingObjectController::update();
+}
+
+void GhostController::set_mode()
+{
+
+	if (_ghost.get_mode() == GhostMode::EATEN)
+	{
+		bool is_at_ultimate_target = (_underlying_tile->get_position() == determine_ultimate_target());
+		
+		if (!is_at_ultimate_target)
+		{
+			//_ghost.set_mode(GhostMode::CHASE);
+			return;
+		}
+	}
+
+	_ghost.set_mode(GhostModeController::get_current_mode());
 }
 
 void GhostController::set_target()
@@ -128,6 +145,10 @@ Vector2f GhostController::determine_ultimate_target() const
 		case (GhostMode::FRIGHTENED) :
 		{
 			return _level.get_retreat_tile_position(_ghost.get_index());
+		}
+		case (GhostMode::EATEN) :
+		{
+			return _level.get_ghost_initial_tile_position(_ghost.get_index());
 		}
 	}
 

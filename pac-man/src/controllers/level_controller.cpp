@@ -108,11 +108,21 @@ void LevelController::handle_power_ups_collisions(PlayerController& player_contr
 	}
 }
 
-bool LevelController::handle_ghost_collision(const Player& player, const Ghost& ghost)
+void LevelController::handle_ghost_collision(Player& player, Ghost& ghost)
 {
-	bool result = CollisionDetector::has_collision(player, ghost);
+	if (!CollisionDetector::has_collision(player, ghost))
+	{
+		return;
+	}
 
-	_level._has_ghost_collision_occured = _level._has_ghost_collision_occured || result;
+	GhostMode ghost_mode = ghost.get_mode();
 
-	return result;
+	if (ghost_mode == GhostMode::FRIGHTENED)
+	{
+		ghost.set_mode(GhostMode::EATEN);
+	}
+	else if (ghost_mode == GhostMode::CHASE || ghost_mode == GhostMode::SCATTER)
+	{
+		player.set_is_alive(false);
+	}
 }

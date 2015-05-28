@@ -20,5 +20,5 @@ private:
 	void handle_tile_collisions(MovingObjectController& moving_object_controller);
 	void handle_pac_dots_collisions(PlayerController& player_controller);
 	void handle_power_ups_collisions(PlayerController& player_controller);
-	bool handle_ghost_collision(const Player& player, const Ghost& ghost);
+	void handle_ghost_collision(Player& player, Ghost& ghost);
 };

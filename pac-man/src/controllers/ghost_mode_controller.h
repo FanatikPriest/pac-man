@@ -16,7 +16,7 @@ private:
 	static GhostMode CURRENT_MODE;
 
 	static void change_mode();
-	static int current_mode_duration();
+	static int  current_mode_duration();
 };
 
 inline void GhostModeController::update()

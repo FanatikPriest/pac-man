@@ -10,6 +10,7 @@ public:
 
 protected:
 	virtual void set_color();
+	virtual void render_object();
 
 private:
 	const Ghost& _ghost;

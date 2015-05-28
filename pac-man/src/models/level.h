@@ -38,9 +38,10 @@ public:
 
 	const Player& get_player() const;
 
-	bool has_ghost_collision_occured() const;
+	bool is_player_dead() const;
 
 	Vector2f get_retreat_tile_position(int index) const;
+	Vector2f get_ghost_initial_tile_position(int index) const;
 
 private:
 	int _tile_rows;
@@ -51,12 +52,11 @@ private:
 	int _pac_dots_collected;
 	int _power_ups_collected;
 
-	bool   _has_ghost_collision_occured;
-
 	char** _map;
 
 	Tile**    _tiles;
 	Tile**    _retreat_tiles;
+	Tile**    _ghost_tiles;
 	PacDot**  _pac_dots;
 	PowerUp** _power_ups;
 	Ghost**   _ghosts;
@@ -179,12 +179,17 @@ inline int Level::get_collectables_count() const
 	return get_pac_dots_count() + get_power_ups_count();
 }
 
-inline bool Level::has_ghost_collision_occured() const
+inline bool Level::is_player_dead() const
 {
-	return _has_ghost_collision_occured;
+	return !_player.is_alive();
 }
 
 inline Vector2f Level::get_retreat_tile_position(int index) const
 {
 	return _retreat_tiles[index]->get_position();
+}
+
+inline Vector2f Level::get_ghost_initial_tile_position(int index) const
+{
+	return _ghost_tiles[index]->get_position();
 }

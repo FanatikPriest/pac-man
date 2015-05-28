@@ -16,6 +16,7 @@ private:
 	Ghost& _ghost;
 	const Level& _level;
 
+	void      set_mode();
 	void      set_target();
 	Vector2f  determine_next_target() const;
 	Vector2f* get_adjecent_tile_positions() const;

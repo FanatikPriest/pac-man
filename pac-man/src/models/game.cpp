@@ -10,7 +10,7 @@ void Game::check_game_state()
 		{
 			_game_state = GameState::WIN;
 		}
-		else if (_level.has_ghost_collision_occured())
+		else if (_level.is_player_dead())
 		{
 			_game_state = GameState::LOSE;
 		}

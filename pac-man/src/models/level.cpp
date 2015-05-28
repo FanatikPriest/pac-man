@@ -5,8 +5,6 @@
 
 Level::Level()
 {
-	_has_ghost_collision_occured = false;
-
 	load_map();
 
 	create_tiles();
@@ -50,12 +48,15 @@ void Level::create_tiles()
 	float size = GameSettings::GAME_OBJECT_SIZE;
 
 	int max_retreat_tiles = 4;
+	int max_ghost_tiles = 4;
 
 	_tiles         = new Tile*[get_tiles_count()];
 	_retreat_tiles = new Tile*[max_retreat_tiles];
+	_ghost_tiles   = new Tile*[max_ghost_tiles];
 
-	int tiles_count = 0;
+	int tiles_count         = 0;
 	int retreat_tiles_count = 0;
+	int ghost_tiles_count   = 0;
 
 	for (int i = 0; i < _tile_rows; i++)
 	{
@@ -75,6 +76,13 @@ void Level::create_tiles()
 				_retreat_tiles[retreat_tiles_count] = new_tile;
 
 				retreat_tiles_count++;
+			}
+
+			if (symbol == 'g' && ghost_tiles_count < max_ghost_tiles)
+			{
+				_ghost_tiles[ghost_tiles_count] = new_tile;
+
+				ghost_tiles_count++;
 			}
 		}
 	}
