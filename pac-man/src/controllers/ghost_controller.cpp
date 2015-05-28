@@ -125,12 +125,9 @@ Vector2f GhostController::determine_ultimate_target() const
 			return _level.get_player().get_position();
 		}
 		case (GhostMode::SCATTER) :
-		{
-			return _level.get_retreat_tile_position(_ghost.get_index());
-		}
 		case (GhostMode::FRIGHTENED) :
 		{
-			return Vector2f();
+			return _level.get_retreat_tile_position(_ghost.get_index());
 		}
 	}
 

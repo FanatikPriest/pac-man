@@ -101,6 +101,8 @@ void LevelController::handle_power_ups_collisions(PlayerController& player_contr
 
 			_level._power_ups_collected++;
 
+			GhostModeController::set_current_mode(GhostMode::FRIGHTENED);
+
 			break;
 		}
 	}

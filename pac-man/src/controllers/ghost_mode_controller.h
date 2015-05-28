@@ -9,6 +9,7 @@ class GhostModeController
 public:
 	static void      update();
 	static GhostMode get_current_mode();
+	static void      set_current_mode(GhostMode mode);
 
 private:
 	static int       LAST_CHANGE_TICKS;
@@ -30,16 +31,14 @@ inline void GhostModeController::update()
 
 inline void GhostModeController::change_mode()
 {
-	if (CURRENT_MODE == GhostMode::SCATTER)
+	if (CURRENT_MODE == GhostMode::SCATTER || CURRENT_MODE == GhostMode::FRIGHTENED)
 	{
-		CURRENT_MODE = GhostMode::CHASE;
+		set_current_mode(GhostMode::CHASE);
 	}
 	else
 	{
-		CURRENT_MODE = GhostMode::SCATTER;
+		set_current_mode(GhostMode::SCATTER);
 	}
-
-	LAST_CHANGE_TICKS = (int) Delta::get_ticks();
 }
 
 inline int GhostModeController::current_mode_duration()
@@ -48,6 +47,10 @@ inline int GhostModeController::current_mode_duration()
 	{
 		return GameSettings::CHASE_MODE_DURATION;
 	}
+	else if (CURRENT_MODE == GhostMode::FRIGHTENED)
+	{
+		return GameSettings::FRIGHTENED_MODE_DURATION;
+	}
 	
 	return GameSettings::SCATTER_MODE_DURATION;
 }
@@ -55,4 +58,11 @@ inline int GhostModeController::current_mode_duration()
 inline GhostMode GhostModeController::get_current_mode()
 {
 	return CURRENT_MODE;
+}
+
+inline void GhostModeController::set_current_mode(GhostMode mode)
+{
+	CURRENT_MODE = mode;
+
+	LAST_CHANGE_TICKS = (int)Delta::get_ticks();
 }
