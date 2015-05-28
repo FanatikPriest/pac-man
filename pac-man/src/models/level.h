@@ -6,7 +6,7 @@
 #include "ghost.h"
 #include "player.h"
 
-#include "../application_settings.h"
+#include "../config/game_settings.h"
 
 class Level
 {
@@ -138,8 +138,8 @@ inline Tile* Level::get_tile_at(int x, int y) const
 
 inline Tile* Level::get_tile_at(Vector2f position) const
 {
-	int x = (int) (position.getY() / ApplicationSettings::GAME_OBJECT_SIZE);
-	int y = (int) (position.getX() / ApplicationSettings::GAME_OBJECT_SIZE);
+	int x = (int)(position.getY() / GameSettings::GAME_OBJECT_SIZE);
+	int y = (int)(position.getX() / GameSettings::GAME_OBJECT_SIZE);
 
 	return get_tile_at(x, y);
 }

@@ -1,5 +1,5 @@
 #include "delta.h"
-#include "../application_settings.h"
+#include "../config/application_settings.h"
 
 Uint32 Delta::_last = SDL_GetTicks();
 float Delta::_delta = 0.0f;

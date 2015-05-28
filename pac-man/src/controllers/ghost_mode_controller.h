@@ -1,7 +1,7 @@
 #pragma once
 
 #include "../utilities/delta.h"
-#include "../application_settings.h"
+#include "../config/game_settings.h"
 #include "../models/ghost_mode.h"
 
 class GhostModeController
@@ -46,10 +46,10 @@ inline int GhostModeController::current_mode_duration()
 {
 	if (CURRENT_MODE == GhostMode::CHASE)
 	{
-		return ApplicationSettings::CHASE_MODE_DURATION;
+		return GameSettings::CHASE_MODE_DURATION;
 	}
 	
-	return ApplicationSettings::SCATTER_MODE_DURATION;
+	return GameSettings::SCATTER_MODE_DURATION;
 }
 
 inline GhostMode GhostModeController::get_current_mode()

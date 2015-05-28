@@ -1,5 +1,7 @@
 #include "ghost_controller.h"
 #include "ghost_mode_controller.h"
+
+#include "../config/game_settings.h"
 #include "../utilities/directions.h"
 
 GhostController::GhostController(Ghost& ghost, const Level& level, Tile* underlying_tile)
@@ -20,7 +22,7 @@ void GhostController::set_target()
 	float distance_to_target = (_ghost.get_position() - _ghost._target).getMagnitude();
 
 	// when the ghost is not near the center of the target, we don't change anything
-	if (!(_ghost._target == Vector2f(0.0f, 0.0f)) && distance_to_target > ApplicationSettings::GAME_OBJECT_SIZE / 5.0f)
+	if (!(_ghost._target == Vector2f(0.0f, 0.0f)) && distance_to_target > GameSettings::GAME_OBJECT_SIZE / 5.0f)
 	{
 		return;
 	}

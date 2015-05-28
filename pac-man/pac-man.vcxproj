@@ -44,7 +44,8 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\application.h" />
-    <ClInclude Include="src\application_settings.h" />
+    <ClInclude Include="src\config\application_settings.h" />
+    <ClInclude Include="src\config\game_settings.h" />
     <ClInclude Include="src\controllers\game_controller.h" />
     <ClInclude Include="src\controllers\ghost_controller.h" />
     <ClInclude Include="src\controllers\ghost_mode_controller.h" />

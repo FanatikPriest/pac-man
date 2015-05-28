@@ -1,6 +1,6 @@
 #include "level.h"
 
-#include "../application_settings.h"
+#include "../config/game_settings.h"
 #include "../utilities/map_loader.h"
 
 Level::Level()
@@ -14,8 +14,8 @@ Level::Level()
 	create_power_ups();
 	create_ghosts();
 
-	float x = 14.0f * ApplicationSettings::GAME_OBJECT_SIZE;
-	float y = 22.5f * ApplicationSettings::GAME_OBJECT_SIZE;
+	float x = 14.0f * GameSettings::GAME_OBJECT_SIZE;
+	float y = 22.5f * GameSettings::GAME_OBJECT_SIZE;
 	create_player(x, y);
 }
 
@@ -47,7 +47,7 @@ void Level::delete_map()
 
 void Level::create_tiles()
 {
-	float size = ApplicationSettings::GAME_OBJECT_SIZE;
+	float size = GameSettings::GAME_OBJECT_SIZE;
 
 	int max_retreat_tiles = 4;
 
@@ -103,7 +103,7 @@ void Level::delete_tiles()
 
 void Level::create_pac_dots()
 {
-	float size = ApplicationSettings::PAC_DOT_SIZE;
+	float size = GameSettings::PAC_DOT_SIZE;
 
 	int tiles_count = get_tiles_count();
 
@@ -127,7 +127,7 @@ void Level::create_pac_dots()
 
 PacDot* Level::create_pac_dot(float width, float height, int row, int column) const
 {
-	float tile_size = ApplicationSettings::GAME_OBJECT_SIZE;
+	float tile_size = GameSettings::GAME_OBJECT_SIZE;
 
 	float x = column * tile_size + tile_size / 2.0f;
 	float y = row    * tile_size + tile_size / 2.0f;
@@ -149,7 +149,7 @@ void Level::create_power_ups()
 {
 	int max_power_ups = 4;
 
-	float size = ApplicationSettings::POWER_UP_SIZE;
+	float size = GameSettings::POWER_UP_SIZE;
 
 	_power_ups_collected = 0;
 
@@ -180,7 +180,7 @@ void Level::create_power_ups()
 
 PowerUp* Level::create_power_up(float width, float height, int row, int column) const
 {
-	float tile_size = ApplicationSettings::GAME_OBJECT_SIZE;
+	float tile_size = GameSettings::GAME_OBJECT_SIZE;
 
 	float x = column * tile_size + tile_size / 2.0f;
 	float y = row    * tile_size + tile_size / 2.0f;
@@ -231,7 +231,7 @@ void Level::create_ghosts()
 
 Ghost* Level::create_ghost(int row, int column, int index) const
 {
-	float tile_size = ApplicationSettings::GAME_OBJECT_SIZE;
+	float tile_size = GameSettings::GAME_OBJECT_SIZE;
 
 	float x = column * tile_size + tile_size / 2.0f;
 	float y = row    * tile_size + tile_size / 2.0f;
@@ -239,7 +239,7 @@ Ghost* Level::create_ghost(int row, int column, int index) const
 	Vector2f position(x, y);
 	Size     size(tile_size, tile_size);
 	Vector2f direction(0.0f, 0.0f);
-	float    speed = ApplicationSettings::GHOST_SPEED;
+	float    speed = GameSettings::GHOST_SPEED;
 
 	return new Ghost(position, size, direction, speed, index);
 }
@@ -255,12 +255,12 @@ void Level::delete_ghosts()
 
 void Level::create_player(float x = 0.0f, float y = 0.0f)
 {
-	float object_size = ApplicationSettings::GAME_OBJECT_SIZE;
+	float object_size = GameSettings::GAME_OBJECT_SIZE;
 
 	Vector2f position(x, y);
 	Size     size(object_size, object_size);
 	Vector2f direction(0.0f, 0.0f);
-	float    speed = ApplicationSettings::PLAYER_SPEED;
+	float    speed = GameSettings::PLAYER_SPEED;
 
 	_player = Player(position, size, direction, speed);
 }

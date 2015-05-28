@@ -25,6 +25,9 @@
     <Filter Include="Source Files\utilities">
       <UniqueIdentifier>{31b6c0a1-c3f8-4da8-a275-3423878b8128}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\config">
+      <UniqueIdentifier>{5870868b-edcf-4333-87f7-b39efa83b1e2}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\main.cpp">
@@ -161,9 +164,6 @@
     <ClInclude Include="src\utilities\delta.h">
       <Filter>Source Files\utilities</Filter>
     </ClInclude>
-    <ClInclude Include="src\application_settings.h">
-      <Filter>Source Files</Filter>
-    </ClInclude>
     <ClInclude Include="src\models\level.h">
       <Filter>Source Files\models</Filter>
     </ClInclude>
@@ -232,6 +232,12 @@
     </ClInclude>
     <ClInclude Include="src\controllers\ghost_mode_controller.h">
       <Filter>Source Files\controllers</Filter>
+    </ClInclude>
+    <ClInclude Include="src\config\application_settings.h">
+      <Filter>Source Files\config</Filter>
+    </ClInclude>
+    <ClInclude Include="src\config\game_settings.h">
+      <Filter>Source Files\config</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

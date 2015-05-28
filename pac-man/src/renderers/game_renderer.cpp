@@ -2,6 +2,7 @@
 #include "player_renderer.h"
 #include "level_renderer.h"
 
+#include "../config/application_settings.h"
 #include "../utilities/fonts.h"
 
 GameRenderer::GameRenderer(const Game& game, SDL_Renderer* renderer)

@@ -1,7 +1,7 @@
 #include <SDL_ttf.h>
 
 #include "application.h"
-#include "application_settings.h"
+#include "config/application_settings.h"
 #include "keyboard_handler.h"
 
 #include "controllers\game_controller.h"

@@ -1,5 +1,5 @@
 #include "game_object_renderer.h"
-#include "../application_settings.h"
+#include "../config/game_settings.h"
 
 GameObjectRenderer::GameObjectRenderer(const GameObject& game_object, SDL_Renderer* renderer)
 	: BaseRenderer(renderer), _game_object(game_object)
@@ -23,7 +23,7 @@ void GameObjectRenderer::render_object()
 
 void GameObjectRenderer::render_center_point()
 {
-	if (!ApplicationSettings::DISPLAY_CENTER_POINTS)
+	if (!GameSettings::DISPLAY_CENTER_POINTS)
 	{
 		return;
 	}
@@ -42,7 +42,7 @@ void GameObjectRenderer::render_center_point()
 
 void GameObjectRenderer::render_collision_box()
 {
-	if (!ApplicationSettings::DISPLAY_COLLISION_BOXES)
+	if (!GameSettings::DISPLAY_COLLISION_BOXES)
 	{
 		return;
 	}

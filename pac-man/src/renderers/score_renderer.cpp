@@ -2,7 +2,7 @@
 
 #include "score_renderer.h"
 
-#include "../application_settings.h"
+#include "../config/application_settings.h"
 
 #include "../utilities/fonts.h"
 
