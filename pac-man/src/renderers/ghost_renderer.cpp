@@ -1,5 +1,6 @@
 #include "ghost_renderer.h"
 
+#include "../utilities/directions.h"
 #include "../utilities/textures.h"
 
 GhostRenderer::GhostRenderer(const Ghost& ghost, SDL_Renderer* renderer)
@@ -20,4 +21,14 @@ SDL_Texture* GhostRenderer::get_texture()
 	}
 
 	return Textures::GHOST_TEXTURE;
+}
+
+SDL_RendererFlip GhostRenderer::get_flip()
+{
+	if (_ghost.get_direction() == Directions::LEFT)
+	{
+		return SDL_FLIP_HORIZONTAL;
+	}
+
+	return SDL_FLIP_NONE;
 }

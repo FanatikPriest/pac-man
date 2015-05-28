@@ -6,7 +6,7 @@ MovingObjectRenderer::MovingObjectRenderer(const MovingObject& moving_object, SD
 
 void MovingObjectRenderer::render_object()
 {
-	SDL_RenderCopyEx(_renderer, get_texture(), NULL, &get_texture_rect(), get_rotation_angle(), NULL, SDL_FLIP_NONE);
+	SDL_RenderCopyEx(_renderer, get_texture(), NULL, &get_texture_rect(), get_rotation_angle(), NULL, get_flip());
 }
 
 void MovingObjectRenderer::set_color()
@@ -31,4 +31,9 @@ SDL_Rect MovingObjectRenderer::get_texture_rect()
 double MovingObjectRenderer::get_rotation_angle()
 {
 	return 0.0f;
+}
+
+SDL_RendererFlip MovingObjectRenderer::get_flip()
+{
+	return SDL_FLIP_NONE;
 }

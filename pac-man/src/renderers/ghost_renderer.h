@@ -9,7 +9,8 @@ public:
 	GhostRenderer(const Ghost& ghost, SDL_Renderer* renderer);
 
 protected:
-	virtual SDL_Texture* get_texture();
+	virtual SDL_Texture*     get_texture();
+	virtual SDL_RendererFlip get_flip();
 
 private:
 	const Ghost& _ghost;
