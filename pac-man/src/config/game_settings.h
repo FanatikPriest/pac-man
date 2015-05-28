@@ -15,5 +15,4 @@ namespace GameSettings
 	// Debugging
 	static const bool DISPLAY_CENTER_POINTS    = false;
 	static const bool DISPLAY_COLLISION_BOXES  = false;
-	static const bool DISPLAY_GHOST_STATE_MODE = true;
 }

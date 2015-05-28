@@ -120,6 +120,12 @@
     <ClCompile Include="src\controllers\ghost_mode_controller.cpp">
       <Filter>Source Files\controllers</Filter>
     </ClCompile>
+    <ClCompile Include="src\utilities\textures.cpp">
+      <Filter>Source Files\utilities</Filter>
+    </ClCompile>
+    <ClCompile Include="src\renderers\moving_object_renderer.cpp">
+      <Filter>Source Files\renderers</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\application.h">
@@ -238,6 +244,12 @@
     </ClInclude>
     <ClInclude Include="src\config\game_settings.h">
       <Filter>Source Files\config</Filter>
+    </ClInclude>
+    <ClInclude Include="src\utilities\textures.h">
+      <Filter>Source Files\utilities</Filter>
+    </ClInclude>
+    <ClInclude Include="src\renderers\moving_object_renderer.h">
+      <Filter>Source Files\renderers</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

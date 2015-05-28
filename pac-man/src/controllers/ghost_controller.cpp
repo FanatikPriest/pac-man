@@ -17,16 +17,18 @@ void GhostController::update()
 	MovingObjectController::update();
 }
 
+/*
+* If the ghost is in the 'eaten' mode and is not at its ultimate destination (center of the maze) do nothing.
+* Otherwise set the current mode set in the GhostModeController.
+*/
 void GhostController::set_mode()
 {
-
 	if (_ghost.get_mode() == GhostMode::EATEN)
 	{
 		bool is_at_ultimate_target = (_underlying_tile->get_position() == determine_ultimate_target());
 		
 		if (!is_at_ultimate_target)
 		{
-			//_ghost.set_mode(GhostMode::CHASE);
 			return;
 		}
 	}

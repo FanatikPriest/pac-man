@@ -35,12 +35,14 @@
     <ClCompile Include="src\renderers\game_renderer.cpp" />
     <ClCompile Include="src\renderers\ghost_renderer.cpp" />
     <ClCompile Include="src\renderers\level_renderer.cpp" />
+    <ClCompile Include="src\renderers\moving_object_renderer.cpp" />
     <ClCompile Include="src\renderers\player_renderer.cpp" />
     <ClCompile Include="src\renderers\score_renderer.cpp" />
     <ClCompile Include="src\renderers\tile_renderer.cpp" />
     <ClCompile Include="src\utilities\collision_detector.cpp" />
     <ClCompile Include="src\utilities\delta.cpp" />
     <ClCompile Include="src\utilities\fonts.cpp" />
+    <ClCompile Include="src\utilities\textures.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\application.h" />
@@ -72,6 +74,7 @@
     <ClInclude Include="src\renderers\game_renderer.h" />
     <ClInclude Include="src\renderers\ghost_renderer.h" />
     <ClInclude Include="src\renderers\level_renderer.h" />
+    <ClInclude Include="src\renderers\moving_object_renderer.h" />
     <ClInclude Include="src\renderers\player_renderer.h" />
     <ClInclude Include="src\renderers\score_renderer.h" />
     <ClInclude Include="src\renderers\tile_renderer.h" />
@@ -81,6 +84,7 @@
     <ClInclude Include="src\utilities\directions.h" />
     <ClInclude Include="src\utilities\fonts.h" />
     <ClInclude Include="src\utilities\map_loader.h" />
+    <ClInclude Include="src\utilities\textures.h" />
     <ClInclude Include="src\vector_2f.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">

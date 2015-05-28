@@ -1,9 +1,9 @@
 #pragma once
 
-#include "game_object_renderer.h"
+#include "moving_object_renderer.h"
 #include "../models/player.h"
 
-class PlayerRenderer : public GameObjectRenderer
+class PlayerRenderer : public MovingObjectRenderer
 {
 public:
 	PlayerRenderer(const Player& player, SDL_Renderer* renderer);
@@ -11,7 +11,8 @@ public:
 	virtual void render();
 
 protected:
-	virtual void set_color();
+	virtual SDL_Texture* get_texture();
+	virtual double       get_rotation_angle();
 
 private:
 	const Player& _player;

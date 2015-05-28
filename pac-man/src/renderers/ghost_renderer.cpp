@@ -1,43 +1,23 @@
 #include "ghost_renderer.h"
 
-#include "../config/game_settings.h"
+#include "../utilities/textures.h"
 
 GhostRenderer::GhostRenderer(const Ghost& ghost, SDL_Renderer* renderer)
-	: GameObjectRenderer(ghost, renderer), _ghost(ghost)
+	: MovingObjectRenderer(ghost, renderer), _ghost(ghost)
 {}
 
-void GhostRenderer::set_color()
+SDL_Texture* GhostRenderer::get_texture()
 {
-	SDL_SetRenderDrawColor(_renderer, 0xFF, 0x00, 0x00, 0xFF); // red
+	GhostMode mode = _ghost.get_mode();
 
-	if (!GameSettings::DISPLAY_GHOST_STATE_MODE)
+	if (mode == GhostMode::FRIGHTENED)
 	{
-		return;
+		return Textures::GHOST_FRIGHTENED_TEXTURE;
+	}
+	else if (mode == GhostMode::EATEN)
+	{
+		return Textures::GHOST_EATEN_TEXTURE;
 	}
 
-	switch (_ghost.get_mode())
-	{
-		case (GhostMode::SCATTER) :
-		{
-			SDL_SetRenderDrawColor(_renderer, 0x00, 0xFF, 0x00, 0xFF); // green
-			break;
-		}
-		case (GhostMode::FRIGHTENED) :
-		{
-			SDL_SetRenderDrawColor(_renderer, 0x80, 0x80, 0xFF, 0xFF); // light blue
-			break;
-		}
-	}
-}
-
-void GhostRenderer::render_object()
-{
-	if (_ghost.get_mode() == GhostMode::EATEN)
-	{
-		SDL_RenderDrawRect(_renderer, &_ghost.get_bounding_box());
-	}
-	else
-	{
-		GameObjectRenderer::render_object();
-	}
+	return Textures::GHOST_TEXTURE;
 }

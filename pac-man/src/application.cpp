@@ -4,12 +4,13 @@
 #include "config/application_settings.h"
 #include "keyboard_handler.h"
 
-#include "controllers\game_controller.h"
+#include "controllers/game_controller.h"
 
-#include "renderers\game_renderer.h"
+#include "renderers/game_renderer.h"
 
-#include "utilities\delta.h"
-#include "utilities\fonts.h"
+#include "utilities/\delta.h"
+#include "utilities/fonts.h"
+#include "utilities/textures.h"
 
 Application::Application()
 {
@@ -78,6 +79,11 @@ bool Application::initialize()
 		return false;
 	}
 
+	if (!Textures::initialize(_renderer))
+	{
+		return false;
+	}
+
 	Delta::set();
 
 	return true;
@@ -130,6 +136,8 @@ void Application::render()
 
 void Application::cleanup()
 {
+	Textures::unload_textures();
+
 	Fonts::unload_fonts();
 
 	SDL_DestroyRenderer(_renderer);
