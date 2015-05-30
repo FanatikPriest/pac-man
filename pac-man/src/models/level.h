@@ -62,26 +62,11 @@ private:
 	Ghost**   _ghosts;
 	Player    _player;
 
-	void load_map();
 	void delete_map();
-
-	void  create_tiles();
-	Tile* create_tile(float width, float height, int row, int column, bool is_rigid) const;
-	void  delete_tiles();
-
-	void    create_pac_dots();
-	PacDot* create_pac_dot(float width, float height, int row, int column) const;
-	void    delete_pac_dots();
-
-	void     create_power_ups();
-	PowerUp* create_power_up(float width, float height, int row, int column) const;
-	void     delete_power_ups();
-
-	void   create_ghosts();
-	Ghost* create_ghost(int row, int column, int index) const;
-	void   delete_ghosts();
-
-	void  create_player(float x, float y);
+	void delete_tiles();
+	void delete_pac_dots();
+	void delete_power_ups();
+	void delete_ghosts();
 
 	friend class LevelController;
 };

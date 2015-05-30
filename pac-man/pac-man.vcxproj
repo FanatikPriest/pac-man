@@ -18,7 +18,6 @@
     <ClCompile Include="src\controllers\level_controller.cpp" />
     <ClCompile Include="src\controllers\moving_object_controller.cpp" />
     <ClCompile Include="src\controllers\player_controller.cpp" />
-    <ClCompile Include="src\keyboard_handler.cpp" />
     <ClCompile Include="src\main.cpp" />
     <ClCompile Include="src\models\collectable.cpp" />
     <ClCompile Include="src\models\game.cpp" />
@@ -42,6 +41,7 @@
     <ClCompile Include="src\utilities\collision_detector.cpp" />
     <ClCompile Include="src\utilities\delta.cpp" />
     <ClCompile Include="src\utilities\fonts.cpp" />
+    <ClCompile Include="src\utilities\keyboard_handler.cpp" />
     <ClCompile Include="src\utilities\textures.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -54,7 +54,6 @@
     <ClInclude Include="src\controllers\level_controller.h" />
     <ClInclude Include="src\controllers\moving_object_controller.h" />
     <ClInclude Include="src\controllers\player_controller.h" />
-    <ClInclude Include="src\keyboard_handler.h" />
     <ClInclude Include="src\models\collectable.h" />
     <ClInclude Include="src\models\game.h" />
     <ClInclude Include="src\models\game_object.h" />
@@ -83,6 +82,7 @@
     <ClInclude Include="src\utilities\delta.h" />
     <ClInclude Include="src\utilities\directions.h" />
     <ClInclude Include="src\utilities\fonts.h" />
+    <ClInclude Include="src\utilities\keyboard_handler.h" />
     <ClInclude Include="src\utilities\map_loader.h" />
     <ClInclude Include="src\utilities\textures.h" />
     <ClInclude Include="src\vector_2f.h" />

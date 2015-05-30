@@ -4,7 +4,6 @@ CollectableRenderer::CollectableRenderer(const Collectable& collectable, SDL_Ren
 	: GameObjectRenderer(collectable, renderer), _collectable(collectable)
 {}
 
-
 void CollectableRenderer::set_color()
 {
 	SDL_SetRenderDrawColor(_renderer, 0xFF, 0xC0, 0xA0, 0xFF);

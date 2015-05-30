@@ -1,15 +1,16 @@
 #include <SDL_ttf.h>
 
 #include "application.h"
+
 #include "config/application_settings.h"
-#include "keyboard_handler.h"
 
 #include "controllers/game_controller.h"
 
 #include "renderers/game_renderer.h"
 
-#include "utilities/\delta.h"
+#include "utilities/delta.h"
 #include "utilities/fonts.h"
+#include "utilities/keyboard_handler.h"
 #include "utilities/textures.h"
 
 Application::Application()

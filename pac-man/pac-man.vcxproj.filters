@@ -36,9 +36,6 @@
     <ClCompile Include="src\application.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\keyboard_handler.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="src\controllers\game_controller.cpp">
       <Filter>Source Files\controllers</Filter>
     </ClCompile>
@@ -126,12 +123,12 @@
     <ClCompile Include="src\renderers\moving_object_renderer.cpp">
       <Filter>Source Files\renderers</Filter>
     </ClCompile>
+    <ClCompile Include="src\utilities\keyboard_handler.cpp">
+      <Filter>Source Files\utilities</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\application.h">
-      <Filter>Source Files</Filter>
-    </ClInclude>
-    <ClInclude Include="src\keyboard_handler.h">
       <Filter>Source Files</Filter>
     </ClInclude>
     <ClInclude Include="src\vector_2f.h">
@@ -250,6 +247,9 @@
     </ClInclude>
     <ClInclude Include="src\renderers\moving_object_renderer.h">
       <Filter>Source Files\renderers</Filter>
+    </ClInclude>
+    <ClInclude Include="src\utilities\keyboard_handler.h">
+      <Filter>Source Files\utilities</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

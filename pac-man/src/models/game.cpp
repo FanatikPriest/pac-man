@@ -1,6 +1,11 @@
 #include "game.h"
 
-Game::Game() : _game_state(GameState::IN_PROGRESS) {}
+#include "../controllers/level_controller.h"
+
+Game::Game() : _game_state(GameState::IN_PROGRESS)
+{
+	LevelController(_level).create();
+}
 
 void Game::check_game_state()
 {

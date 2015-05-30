@@ -1,6 +1,6 @@
 #include "player_controller.h"
 #include "../utilities/directions.h"
-#include "../keyboard_handler.h"
+#include "../utilities/keyboard_handler.h"
 
 PlayerController::PlayerController(Player& player, Tile* underlying_tile)
 	: MovingObjectController(player, underlying_tile), _player(player)
