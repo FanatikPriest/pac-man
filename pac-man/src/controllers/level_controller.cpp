@@ -2,14 +2,11 @@
 #include "ghost_mode_controller.h"
 
 #include "../utilities/collision_detector.h"
-#include "../utilities/map_loader.h"
 
 LevelController::LevelController(Level& level) : _level(level) {}
 
 void LevelController::create()
 {
-	load_map();
-
 	create_tiles();
 	create_pac_dots();
 	create_power_ups();
@@ -26,34 +23,26 @@ void LevelController::update()
 	update_ghosts();
 }
 
-void LevelController::load_map()
-{
-	_level._tile_rows    = MapLoader::ROWS;
-	_level._tile_columns = MapLoader::COLUMNS;
-
-	_level._map = MapLoader::read_map_from_file();
-}
-
 void LevelController::create_tiles()
 {
 	float size = GameSettings::GAME_OBJECT_SIZE;
 
-	int max_retreat_tiles = 4;
-	int max_ghost_tiles   = 4;
+	const Map& map  = _level.get_map();
+	char** char_map = map.get_char_map();
 
-	_level._tiles         = new Tile*[_level.get_tiles_count()];
-	_level._retreat_tiles = new Tile*[max_retreat_tiles];
-	_level._ghost_tiles   = new Tile*[max_ghost_tiles];
+	_level._tiles         = new Tile*[map.get_tiles_count()];
+	_level._retreat_tiles = new Tile*[map.get_retreat_tiles_count()];
+	_level._ghost_tiles   = new Tile*[map.get_ghosts_count()];
 
 	int tiles_count         = 0;
 	int retreat_tiles_count = 0;
 	int ghost_tiles_count   = 0;
 
-	for (int i = 0; i < _level._tile_rows; i++)
+	for (int i = 0; i < map.get_tile_rows_count(); i++)
 	{
-		for (int j = 0; j < _level._tile_columns; j++)
+		for (int j = 0; j < map.get_tile_columns_count(); j++)
 		{
-			char symbol   = _level._map[i][j];
+			char symbol   = char_map[i][j];
 			bool is_rigid = symbol == 'x' || symbol == 'r';
 
 			Tile* new_tile = create_tile(size, size, i, j, is_rigid);
@@ -62,14 +51,14 @@ void LevelController::create_tiles()
 
 			tiles_count++;
 
-			if (symbol == 'r' && retreat_tiles_count < max_retreat_tiles)
+			if (symbol == 'r')
 			{
 				_level._retreat_tiles[retreat_tiles_count] = new_tile;
 
 				retreat_tiles_count++;
 			}
 
-			if (symbol == 'g' && ghost_tiles_count < max_ghost_tiles)
+			if (symbol == 'g')
 			{
 				_level._ghost_tiles[ghost_tiles_count] = new_tile;
 
@@ -81,23 +70,23 @@ void LevelController::create_tiles()
 
 void LevelController::create_pac_dots()
 {
+	const Map& map  = _level.get_map();
+	char** char_map = map.get_char_map();
+
+	_level._pac_dots = new PacDot*[map.get_pac_dots_count()];
+
 	float size = GameSettings::PAC_DOT_SIZE;
 
-	int tiles_count = _level.get_tiles_count();
+	int pac_dots_count = 0;
 
-	_level._pac_dots = new PacDot*[tiles_count];
-
-	_level._pac_dots_count     = 0;
-	_level._pac_dots_collected = 0;
-
-	for (int i = 0; i < _level._tile_rows; i++)
+	for (int i = 0; i < map.get_tile_rows_count(); i++)
 	{
-		for (int j = 0; j < _level._tile_columns; j++)
+		for (int j = 0; j < map.get_tile_columns_count(); j++)
 		{
-			if (_level._map[i][j] == 'd')
+			if (char_map[i][j] == 'd')
 			{
-				_level._pac_dots[_level._pac_dots_count] = create_pac_dot(size, size, i, j);
-				_level._pac_dots_count++;
+				_level._pac_dots[pac_dots_count] = create_pac_dot(size, size, i, j);
+				pac_dots_count++;
 			}
 		}
 	}
@@ -105,63 +94,54 @@ void LevelController::create_pac_dots()
 
 void LevelController::create_power_ups()
 {
-	int max_power_ups = 4;
+	const Map& map  = _level.get_map();
+	char** char_map = map.get_char_map();
 
 	float size = GameSettings::POWER_UP_SIZE;
 
-	_level._power_ups = new PowerUp*[max_power_ups];
+	_level._power_ups = new PowerUp*[map.get_power_ups_count()];
 
-	_level._power_ups_collected = 0;
-	_level._power_ups_count     = 0;
+	int power_ups_count = 0;
 
-	for (int i = 0; i < _level._tile_rows; i++)
+	for (int i = 0; i < map.get_tile_rows_count(); i++)
 	{
-		for (int j = 0; j < _level._tile_columns; j++)
+		for (int j = 0; j < map.get_tile_columns_count(); j++)
 		{
-			if (_level._map[i][j] != 'u')
+			if (char_map[i][j] != 'u')
 			{
 				continue;
 			}
 
-			_level._power_ups[_level._power_ups_count] = create_power_up(size, size, i, j);
+			_level._power_ups[power_ups_count] = create_power_up(size, size, i, j);
 
-			_level._power_ups_count++;
-
-			if (_level._power_ups_count == max_power_ups)
-			{
-				return;
-			}
+			power_ups_count++;
 		}
 	}
 }
 
 void LevelController::create_ghosts()
 {
-	int max_ghosts = 4;
+	const Map& map  = _level.get_map();
+	char** char_map = map.get_char_map();
 
-	_level._ghosts = new Ghost*[max_ghosts];
+	_level._ghosts = new Ghost*[map.get_ghosts_count()];
 
-	_level._ghosts_count = 0;
+	int ghosts_count = 0;
 
-	for (int i = 0; i < _level._tile_rows; i++)
+	for (int i = 0; i < map.get_tile_rows_count(); i++)
 	{
-		for (int j = 0; j < _level._tile_columns; j++)
+		for (int j = 0; j < map.get_tile_columns_count(); j++)
 		{
-			if (_level._map[i][j] != 'g')
+			if (char_map[i][j] != 'g')
 			{
 				continue;
 			}
 
-			int index = (3 + _level._ghosts_count) % 4;
+			int index = (3 + ghosts_count) % 4;
 
-			_level._ghosts[_level._ghosts_count] = create_ghost(i, j, index);
+			_level._ghosts[ghosts_count] = create_ghost(i, j, index);
 
-			_level._ghosts_count++;
-
-			if (_level._ghosts_count == max_ghosts)
-			{
-				return;
-			}
+			ghosts_count++;
 		}
 	}
 }
@@ -240,7 +220,7 @@ void LevelController::update_player()
 
 void LevelController::update_ghosts()
 {
-	for (int i = 0; i < _level._ghosts_count; i++)
+	for (int i = 0; i < _level.get_map().get_ghosts_count(); i++)
 	{
 		Ghost* ghost = _level._ghosts[i];
 
@@ -258,7 +238,7 @@ void LevelController::update_ghosts()
 
 void LevelController::handle_tile_collisions(MovingObjectController& moving_object_controller)
 {
-	int count = _level.get_tiles_count();
+	int count = _level.get_map().get_tiles_count();
 
 	Tile** tiles = _level.get_tiles();
 
@@ -277,7 +257,7 @@ void LevelController::handle_tile_collisions(MovingObjectController& moving_obje
 
 void LevelController::handle_pac_dots_collisions(PlayerController& player_controller)
 {
-	int count = _level.get_pac_dots_count();
+	int count = _level.get_map().get_pac_dots_count();
 
 	PacDot** pac_dots = _level.get_pac_dots();
 
@@ -298,7 +278,7 @@ void LevelController::handle_pac_dots_collisions(PlayerController& player_contro
 
 void LevelController::handle_power_ups_collisions(PlayerController& player_controller)
 {
-	int count = _level.get_power_ups_count();
+	int count = _level.get_map().get_power_ups_count();
 
 	PowerUp** power_ups = _level.get_power_ups();
 

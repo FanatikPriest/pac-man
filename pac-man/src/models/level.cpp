@@ -1,6 +1,12 @@
 #include "level.h"
 
-Level::Level() {}
+Level::Level()
+{
+	_map.initialize();
+
+	_pac_dots_collected  = 0;
+	_power_ups_collected = 0;
+}
 
 Level::~Level()
 {
@@ -10,19 +16,14 @@ Level::~Level()
 	delete_tiles();
 }
 
-void Level::delete_map()
+const Map& Level::get_map() const
 {
-	for (int i = 0; i < _tile_rows; i++)
-	{
-		delete[] _map[i];
-	}
-
-	delete[] _map;
+	return _map;
 }
 
 void Level::delete_tiles()
 {
-	int tiles_count = get_tiles_count();
+	int tiles_count = _map.get_tiles_count();
 
 	for (int i = 0; i < tiles_count; i++)
 	{
@@ -34,7 +35,7 @@ void Level::delete_tiles()
 
 void Level::delete_pac_dots()
 {
-	for (int i = 0; i < _pac_dots_count; i++)
+	for (int i = 0; i < _map.get_pac_dots_count(); i++)
 	{
 		delete _pac_dots[i];
 	}
@@ -44,7 +45,7 @@ void Level::delete_pac_dots()
 
 void Level::delete_power_ups()
 {
-	for (int i = 0; i < _power_ups_count; i++)
+	for (int i = 0; i < _map.get_power_ups_count(); i++)
 	{
 		delete _power_ups[i];
 	}
@@ -54,7 +55,7 @@ void Level::delete_power_ups()
 
 void Level::delete_ghosts()
 {
-	for (int i = 0; i < _ghosts_count; i++)
+	for (int i = 0; i < _map.get_ghosts_count(); i++)
 	{
 		delete _ghosts[i];
 	}

@@ -126,6 +126,9 @@
     <ClCompile Include="src\utilities\keyboard_handler.cpp">
       <Filter>Source Files\utilities</Filter>
     </ClCompile>
+    <ClCompile Include="src\models\map.cpp">
+      <Filter>Source Files\models</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\application.h">
@@ -250,6 +253,9 @@
     </ClInclude>
     <ClInclude Include="src\utilities\keyboard_handler.h">
       <Filter>Source Files\utilities</Filter>
+    </ClInclude>
+    <ClInclude Include="src\models\map.h">
+      <Filter>Source Files\models</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

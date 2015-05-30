@@ -24,6 +24,7 @@
     <ClCompile Include="src\models\game_object.cpp" />
     <ClCompile Include="src\models\ghost.cpp" />
     <ClCompile Include="src\models\level.cpp" />
+    <ClCompile Include="src\models\map.cpp" />
     <ClCompile Include="src\models\moving_object.cpp" />
     <ClCompile Include="src\models\pac_dot.cpp" />
     <ClCompile Include="src\models\player.cpp" />
@@ -61,6 +62,7 @@
     <ClInclude Include="src\models\ghost.h" />
     <ClInclude Include="src\models\level.h" />
     <ClInclude Include="src\models\ghost_mode.h" />
+    <ClInclude Include="src\models\map.h" />
     <ClInclude Include="src\models\moving_object.h" />
     <ClInclude Include="src\models\pac_dot.h" />
     <ClInclude Include="src\models\player.h" />

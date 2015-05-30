@@ -25,7 +25,7 @@ void LevelRenderer::render_tiles()
 {
 	Tile** tiles = _level.get_tiles();
 
-	int tiles_count = _level.get_tiles_count();
+	int tiles_count = _level.get_map().get_tiles_count();
 
 	for (int i = 0; i < tiles_count; i++)
 	{
@@ -39,7 +39,7 @@ void LevelRenderer::render_pac_dots()
 {
 	PacDot** pac_dots = _level.get_pac_dots();
 
-	int pac_dots_count = _level.get_pac_dots_count();
+	int pac_dots_count = _level.get_map().get_pac_dots_count();
 
 	for (int i = 0; i < pac_dots_count; i++)
 	{
@@ -53,7 +53,7 @@ void LevelRenderer::render_power_ups()
 {
 	PowerUp** power_ups = _level.get_power_ups();
 
-	int power_ups_count = _level.get_power_ups_count();
+	int power_ups_count = _level.get_map().get_power_ups_count();
 
 	for (int i = 0; i < power_ups_count; i++)
 	{
@@ -67,7 +67,7 @@ void LevelRenderer::render_ghosts()
 {
 	Ghost** ghosts   = _level.get_ghosts();
 
-	int ghosts_count = _level.get_ghosts_count();
+	int ghosts_count = _level.get_map().get_ghosts_count();
 
 	for (int i = 0; i < ghosts_count; i++)
 	{

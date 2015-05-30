@@ -16,8 +16,6 @@ public:
 private:
 	Level& _level;
 
-	void load_map();
-
 	void create_tiles();
 	void create_pac_dots();
 	void create_power_ups();
