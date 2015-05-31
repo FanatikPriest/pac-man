@@ -1,8 +1,13 @@
 #pragma once
 
 #include "moving_object.h"
-#include "ghost_mode.h"
+#include "../enums/ghost_mode.h"
 
+/*
+The ghost has a ghost mode which changes its movement behaviour. The target of the ghost
+is the next position that is closest to its ultimate target. The ultimate target is defined
+based in the current ghost mode.
+*/
 class Ghost : public MovingObject
 {
 public:
@@ -21,9 +26,6 @@ private:
 	int       _index;
 	Vector2f  _target;
 	GhostMode _mode;
-
-	friend class GhostController;
-	friend class GhostRenderer;
 };
 
 inline int Ghost::get_index() const

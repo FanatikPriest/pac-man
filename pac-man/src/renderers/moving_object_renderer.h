@@ -3,6 +3,9 @@
 #include "game_object_renderer.h"
 #include "../models/moving_object.h"
 
+/*
+Renders textures instead of filled rectangulars.
+*/
 class MovingObjectRenderer : public GameObjectRenderer
 {
 public:

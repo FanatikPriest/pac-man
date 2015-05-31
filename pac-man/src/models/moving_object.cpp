@@ -22,6 +22,10 @@ MovingObject::MovingObject(float x, float y, float height, float width, bool is_
 	set_speed(speed);
 }
 
+/*
+Changes the position of the moving object based on its current position, direction and speed,
+and delta time from last frame.
+*/
 void MovingObject::move()
 {
 	Vector2f position = get_position() + (get_direction() * get_speed() * Delta::get());

@@ -3,6 +3,9 @@
 #include <math.h>
 #include <iostream>
 
+/*
+A two-dimensional vector that has float values for coordinates.
+*/
 class Vector2f
 {
 public:

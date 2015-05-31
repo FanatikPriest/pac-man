@@ -14,6 +14,9 @@ void MovingObjectController::move_object()
 	_moving_object.move();
 }
 
+/*
+Moves back the moving object so that it and the tile it collides with are next to each other.
+*/
 void MovingObjectController::handle_movement_collision(const Tile& tile)
 {
 	SDL_Rect intersection;
@@ -27,6 +30,9 @@ void MovingObjectController::handle_movement_collision(const Tile& tile)
 	_moving_object.set_position(_moving_object.get_position() + offset);
 }
 
+/*
+Returns true if the new direction differs from the last. False otherwise.
+*/
 bool MovingObjectController::set_direction(const Vector2f& direction)
 {
 	bool direction_changed = !(direction == _moving_object.get_direction());

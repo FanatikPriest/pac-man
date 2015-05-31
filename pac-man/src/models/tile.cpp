@@ -14,13 +14,3 @@ Tile::Tile(float x, float y, float height, float width, int row, int column, boo
 	_column = column;
 	set_is_rigid(is_rigid);
 }
-
-int Tile::get_row() const
-{
-	return _row;
-}
-
-int Tile::get_column() const
-{
-	return _column;
-}

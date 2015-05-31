@@ -3,6 +3,9 @@
 #include "base_renderer.h"
 #include "../models/level.h"
 
+/*
+Delegates the rendering of all game objects.
+*/
 class LevelRenderer : public BaseRenderer
 {
 public:

@@ -4,6 +4,9 @@
 #include "player_controller.h"
 #include "ghost_controller.h"
 
+/*
+Controls the level and its game objects, handles actions on collisions.
+*/
 class LevelController
 {
 public:

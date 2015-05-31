@@ -3,6 +3,9 @@
 #include <SDL.h>
 #include <SDL_image.h>
 
+/*
+Manages the textures used in the game.
+*/
 class Textures
 {
 public:

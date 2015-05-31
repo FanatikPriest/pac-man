@@ -2,6 +2,10 @@
 
 #include "game_object.h"
 
+/*
+A level tile that can be rigid. It also keeps its map coordinates (row and column) to optimize
+calculations and offsetting.
+*/
 class Tile : public GameObject
 {
 public:
@@ -15,3 +19,13 @@ private:
 	int  _row;    // zero-based
 	int  _column; // zero-based
 };
+
+inline int Tile::get_row() const
+{
+	return _row;
+}
+
+inline int Tile::get_column() const
+{
+	return _column;
+}

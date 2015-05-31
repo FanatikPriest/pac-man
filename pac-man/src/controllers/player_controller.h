@@ -5,6 +5,9 @@
 #include "../models/player.h"
 #include "../models/collectable.h"
 
+/*
+Handles player movement specifics and collisions with collectable items.
+*/
 class PlayerController : public MovingObjectController
 {
 public:
@@ -14,6 +17,8 @@ public:
 
 protected:
 	virtual void move_object();
+
+	Vector2f determine_new_direction();
 
 private:
 	Player& _player;

@@ -3,6 +3,9 @@
 #include "../models/moving_object.h"
 #include "../models/tile.h"
 
+/*
+Moves the object and handles its collisions with tiles.
+*/
 class MovingObjectController
 {
 public:

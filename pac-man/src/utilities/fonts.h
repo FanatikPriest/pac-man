@@ -2,6 +2,9 @@
 
 #include <SDL_ttf.h>
 
+/*
+Manages the fonts used in the game.
+*/
 class Fonts
 {
 public:

@@ -7,6 +7,11 @@ Game::Game() : _game_state(GameState::IN_PROGRESS)
 	LevelController(_level).create();
 }
 
+/*
+Checks if the win or lose conditions are met and sets the relevant new game state.
+Win condition: all power-ups and pac-dots are collected.
+Lose condition: the player is dead.
+*/
 void Game::check_game_state()
 {
 	if (_game_state == GameState::IN_PROGRESS)

@@ -4,7 +4,7 @@
 #include "../utilities/delta.h"
 
 /*
-* A game object with position, size (see GameObject), movement direction and movement speed.
+A game object with position, size (see GameObject), movement direction and movement speed.
 */
 class MovingObject : public GameObject
 {

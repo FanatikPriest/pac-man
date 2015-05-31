@@ -17,10 +17,10 @@ Map::~Map()
 
 void Map::load_char_map()
 {
+	_char_map = MapLoader::read_map_from_file();
+
 	_tile_rows_count    = MapLoader::ROWS;
 	_tile_columns_count = MapLoader::COLUMNS;
-
-	_char_map = MapLoader::read_map_from_file();
 }
 
 void Map::delete_char_map()

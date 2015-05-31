@@ -2,6 +2,9 @@
 
 #include <SDL.h>
 
+/*
+Measures the elapsed time and the time each frame takes.
+*/
 class Delta
 {
 public:

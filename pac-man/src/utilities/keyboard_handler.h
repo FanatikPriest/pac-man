@@ -1,6 +1,9 @@
 #pragma once
 
-// Handles the keyboard buttons that set the direction of movement
+/*
+Handles the keyboard buttons that set the direction of movement.
+Implements the singleton pattern.
+*/
 class KeyboardHandler
 {
 public:

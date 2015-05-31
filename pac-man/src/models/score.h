@@ -1,5 +1,8 @@
 #pragma once
 
+/*
+The score is an integer. Provides methods for setting and incrementing the score.
+*/
 class Score
 {
 public:

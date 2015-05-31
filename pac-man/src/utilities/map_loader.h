@@ -7,10 +7,13 @@
 
 using namespace std;
 
+/*
+Reads a text file and generates a two-dimensional character array that represents the map of a level.
+*/
 namespace MapLoader
 {
-	int ROWS    = 30;
-	int COLUMNS = 28;
+	int ROWS    = 0;
+	int COLUMNS = 0;
 
 	char** read_map_from_file()
 	{

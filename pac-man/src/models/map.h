@@ -1,5 +1,20 @@
 #pragma once
 
+/*
+The map of a level.
+
+Reads and storesthe character representation of the map from a file. Calculates and keeps
+the count of all game object types.
+
+Character legend:
+x - a rigid tile
+r - a rigid tile that is also a retreat tile for a ghost
+d - a non-rigid tile with a pac-dot on it
+u - a non-rigid tile with a power-up on it
+g - a non-rigid tile with a ghost on it
+p - a non-rigid tile with Pac-man on it
+b - a non-rigid tile with nothing on it (blank).
+*/
 class Map
 {
 public:

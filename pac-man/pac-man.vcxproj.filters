@@ -28,6 +28,12 @@
     <Filter Include="Source Files\config">
       <UniqueIdentifier>{5870868b-edcf-4333-87f7-b39efa83b1e2}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\math">
+      <UniqueIdentifier>{75b7674c-fea3-4e16-abca-028d1e2d3712}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\enums">
+      <UniqueIdentifier>{d272ef73-3203-4a49-89f4-62c84f5bd5cd}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\main.cpp">
@@ -134,12 +140,6 @@
     <ClInclude Include="src\application.h">
       <Filter>Source Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\vector_2f.h">
-      <Filter>Source Files</Filter>
-    </ClInclude>
-    <ClInclude Include="src\size.h">
-      <Filter>Source Files</Filter>
-    </ClInclude>
     <ClInclude Include="src\controllers\game_controller.h">
       <Filter>Source Files\controllers</Filter>
     </ClInclude>
@@ -221,9 +221,6 @@
     <ClInclude Include="src\utilities\fonts.h">
       <Filter>Source Files\utilities</Filter>
     </ClInclude>
-    <ClInclude Include="src\models\game_state.h">
-      <Filter>Source Files\models</Filter>
-    </ClInclude>
     <ClInclude Include="src\models\ghost.h">
       <Filter>Source Files\models</Filter>
     </ClInclude>
@@ -232,9 +229,6 @@
     </ClInclude>
     <ClInclude Include="src\renderers\ghost_renderer.h">
       <Filter>Source Files\renderers</Filter>
-    </ClInclude>
-    <ClInclude Include="src\models\ghost_mode.h">
-      <Filter>Source Files\models</Filter>
     </ClInclude>
     <ClInclude Include="src\controllers\ghost_mode_controller.h">
       <Filter>Source Files\controllers</Filter>
@@ -257,10 +251,17 @@
     <ClInclude Include="src\models\map.h">
       <Filter>Source Files\models</Filter>
     </ClInclude>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="ClassDiagram.cd" />
-    <None Include="ClassDiagram1.cd" />
-    <None Include="ClassDiagram2.cd" />
+    <ClInclude Include="src\math\size.h">
+      <Filter>Source Files\math</Filter>
+    </ClInclude>
+    <ClInclude Include="src\math\vector_2f.h">
+      <Filter>Source Files\math</Filter>
+    </ClInclude>
+    <ClInclude Include="src\enums\game_state.h">
+      <Filter>Source Files\enums</Filter>
+    </ClInclude>
+    <ClInclude Include="src\enums\ghost_mode.h">
+      <Filter>Source Files\enums</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

@@ -2,6 +2,9 @@
 
 #include <SDL.h>
 
+/*
+A base class for all other renderers.
+*/
 class BaseRenderer
 {
 public:

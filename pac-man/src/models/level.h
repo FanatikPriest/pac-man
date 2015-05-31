@@ -9,6 +9,9 @@
 
 #include "../config/game_settings.h"
 
+/*
+Contains all game objects.
+*/
 class Level
 {
 public:
@@ -18,7 +21,7 @@ public:
 	const Map& get_map() const;
 
 	Tile** get_tiles() const;
-	Tile*  get_tile_at(int x, int y) const;
+	Tile*  get_tile_at(int row, int column) const;
 	Tile*  get_tile_at(Vector2f position) const;
 
 	PacDot**  get_pac_dots() const;
@@ -78,19 +81,19 @@ inline Ghost** Level::get_ghosts() const
 }
 
 /*
-* x and y are zero-based indices.
+* row and column are zero-based indices.
 */
-inline Tile* Level::get_tile_at(int x, int y) const
+inline Tile* Level::get_tile_at(int row, int column) const
 {
 	int tile_rows    = _map.get_tile_rows_count();
 	int tile_columns = _map.get_tile_columns_count();
 
-	if (x < 0 || y < 0 || y >= tile_columns || x >= tile_rows)
+	if (row < 0 || column < 0 || row >= tile_rows || column >= tile_columns)
 	{
 		return NULL;
 	}
 
-	int index = x * tile_columns + y;
+	int index = row * tile_columns + column;
 
 	return _tiles[index];
 }

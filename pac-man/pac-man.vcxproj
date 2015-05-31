@@ -55,13 +55,15 @@
     <ClInclude Include="src\controllers\level_controller.h" />
     <ClInclude Include="src\controllers\moving_object_controller.h" />
     <ClInclude Include="src\controllers\player_controller.h" />
+    <ClInclude Include="src\enums\game_state.h" />
+    <ClInclude Include="src\enums\ghost_mode.h" />
+    <ClInclude Include="src\math\size.h" />
+    <ClInclude Include="src\math\vector_2f.h" />
     <ClInclude Include="src\models\collectable.h" />
     <ClInclude Include="src\models\game.h" />
     <ClInclude Include="src\models\game_object.h" />
-    <ClInclude Include="src\models\game_state.h" />
     <ClInclude Include="src\models\ghost.h" />
     <ClInclude Include="src\models\level.h" />
-    <ClInclude Include="src\models\ghost_mode.h" />
     <ClInclude Include="src\models\map.h" />
     <ClInclude Include="src\models\moving_object.h" />
     <ClInclude Include="src\models\pac_dot.h" />
@@ -79,7 +81,6 @@
     <ClInclude Include="src\renderers\player_renderer.h" />
     <ClInclude Include="src\renderers\score_renderer.h" />
     <ClInclude Include="src\renderers\tile_renderer.h" />
-    <ClInclude Include="src\size.h" />
     <ClInclude Include="src\utilities\collision_detector.h" />
     <ClInclude Include="src\utilities\delta.h" />
     <ClInclude Include="src\utilities\directions.h" />
@@ -87,12 +88,6 @@
     <ClInclude Include="src\utilities\keyboard_handler.h" />
     <ClInclude Include="src\utilities\map_loader.h" />
     <ClInclude Include="src\utilities\textures.h" />
-    <ClInclude Include="src\vector_2f.h" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="ClassDiagram.cd" />
-    <None Include="ClassDiagram1.cd" />
-    <None Include="ClassDiagram2.cd" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{A51A9806-6456-4D44-B9E2-5A94B9B57AFD}</ProjectGuid>

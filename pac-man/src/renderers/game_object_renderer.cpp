@@ -16,11 +16,17 @@ void GameObjectRenderer::render()
 	render_collision_box();
 }
 
+/*
+Renders the object as a rectangle (square).
+*/
 void GameObjectRenderer::render_object()
 {
 	SDL_RenderFillRect(_renderer, &_game_object.get_bounding_box());
 }
 
+/*
+Renders a red dot in the center of the object when the related debug option is enabled.
+*/
 void GameObjectRenderer::render_center_point()
 {
 	if (!GameSettings::DISPLAY_CENTER_POINTS)
@@ -40,6 +46,9 @@ void GameObjectRenderer::render_center_point()
 	SDL_RenderFillRect(_renderer, &rect);
 }
 
+/*
+Renders a green outline around the object when the related debug option is enabled.
+*/
 void GameObjectRenderer::render_collision_box()
 {
 	if (!GameSettings::DISPLAY_COLLISION_BOXES)

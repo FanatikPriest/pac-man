@@ -2,6 +2,9 @@
 
 #include "game_object.h"
 
+/*
+A base class for the collectable items - pac-dots and power-ups.
+*/
 class Collectable : public GameObject
 {
 public:

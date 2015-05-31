@@ -18,8 +18,8 @@ void GhostController::update()
 }
 
 /*
-* If the ghost is in the 'eaten' mode and is not at its ultimate destination (center of the maze) do nothing.
-* Otherwise set the current mode set in the GhostModeController.
+If the ghost is in the 'eaten' mode and is not at its ultimate destination (center of the maze) do nothing.
+Otherwise set the current mode set in the GhostModeController.
 */
 void GhostController::set_mode()
 {
@@ -36,12 +36,16 @@ void GhostController::set_mode()
 	_ghost.set_mode(GhostModeController::get_current_mode());
 }
 
+/*
+If the current target tile position is reached, the adjecent tile position closest to
+the ultimate target is set as a new target.
+*/
 void GhostController::set_target()
 {
-	float distance_to_target = (_ghost.get_position() - _ghost._target).getMagnitude();
+	float distance_to_target = (_ghost.get_position() - _ghost.get_target()).getMagnitude();
 
 	// when the ghost is not near the center of the target, we don't change anything
-	if (!(_ghost._target == Vector2f(0.0f, 0.0f)) && distance_to_target > GameSettings::GAME_OBJECT_SIZE / 5.0f)
+	if (!(_ghost.get_target() == Vector2f(0.0f, 0.0f)) && distance_to_target > GameSettings::GAME_OBJECT_SIZE / 5.0f)
 	{
 		return;
 	}
@@ -57,6 +61,10 @@ void GhostController::set_target()
 	}
 }
 
+/*
+Determines the adjecent tile that is the closest to the ultimate target (e.g. the player)
+and returns its position.
+*/
 Vector2f GhostController::determine_next_target() const
 {
 	Vector2f* adjecent_tile_positions  = get_adjecent_tile_positions();
@@ -90,12 +98,12 @@ Vector2f GhostController::determine_next_target() const
 }
 
 /*
-* Returns the positions of tiles that are ahead or to the side of the
-* underlying tile by checking the ghost's direction. Returning only 
-* these three tiles will guarantee no moving in reverse direction.
-* 
-* At the start of the game the ghost should not move down - it will
-* mimic the movement in upwards direction.
+Returns the positions of tiles that are ahead or to the side of the
+underlying tile by checking the ghost's direction. Returning only 
+these three tiles will guarantee no moving in reverse direction.
+
+At the start of the game the ghost should not move down - it will
+mimic the movement in upwards direction.
 */
 Vector2f* GhostController::get_adjecent_tile_positions() const
 {
@@ -135,6 +143,10 @@ Vector2f* GhostController::get_adjecent_tile_positions() const
 	return adjecent_tiles;
 }
 
+/*
+Depending on the current ghost mode the ultimate target can be the player,
+one of the map corners (retreat tiles) or the ghost's starting position.
+*/
 Vector2f GhostController::determine_ultimate_target() const
 {
 	switch (_ghost.get_mode())
@@ -157,9 +169,12 @@ Vector2f GhostController::determine_ultimate_target() const
 	return Vector2f();
 }
 
+/*
+Changes the direction of the ghost so it can move towards its target.
+*/
 void GhostController::change_ghost_direction()
 {
-	const Tile* target_tile = _level.get_tile_at(_ghost._target);
+	const Tile* target_tile = _level.get_tile_at(_ghost.get_target());
 
 	float dx = (float) (target_tile->get_column() - _underlying_tile->get_column());
 	float dy = (float) (target_tile->get_row() - _underlying_tile->get_row());
@@ -176,6 +191,9 @@ void GhostController::change_ghost_direction()
 	}
 }
 
+/*
+x and y are zero-based tile indices.
+*/
 Vector2f GhostController::get_tile_position_at(int x, int y) const
 {
 	Tile* tile = _level.get_tile_at(x, y);

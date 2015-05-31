@@ -2,8 +2,11 @@
 
 #include "../utilities/delta.h"
 #include "../config/game_settings.h"
-#include "../models/ghost_mode.h"
+#include "../enums/ghost_mode.h"
 
+/*
+Controls the ghost mode phase. After the current mode phase elapses, the controller sets the next phase.
+*/
 class GhostModeController
 {
 public:
@@ -29,6 +32,9 @@ inline void GhostModeController::update()
 	}
 }
 
+/*
+Determines and sets the next ghost mode phase based on the current phase.
+*/
 inline void GhostModeController::change_mode()
 {
 	if (CURRENT_MODE == GhostMode::SCATTER || CURRENT_MODE == GhostMode::FRIGHTENED)

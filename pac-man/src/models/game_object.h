@@ -2,11 +2,13 @@
 
 #include <SDL.h>
 
-#include "../vector_2f.h"
-#include "../size.h"
+#include "../math/vector_2f.h"
+#include "../math/size.h"
 
 /*
-* An object that has two-dimensional size (height and width) and a two-dimensional position.
+An object that has two-dimensional size (height and width) and a two-dimensional position.
+The object can also be rigid which is used in collisions.
+The object position is considered the center point of the object.
 */
 class GameObject
 {

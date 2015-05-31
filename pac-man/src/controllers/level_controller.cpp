@@ -19,10 +19,14 @@ void LevelController::update()
 	update_ghosts();
 }
 
+/*
+Iterates over the map once and creates all tiles, collectables, ghosts and the player.
+*/
 void LevelController::create_game_obejcts()
 {
 	const Map& map = _level.get_map();
 
+	// initialize arrays
 	_level._tiles         = new Tile*[map.get_tiles_count()];
 	_level._retreat_tiles = new Tile*[map.get_retreat_tiles_count()];
 	_level._ghost_tiles   = new Tile*[map.get_ghosts_count()];
@@ -30,6 +34,7 @@ void LevelController::create_game_obejcts()
 	_level._power_ups     = new PowerUp*[map.get_power_ups_count()];
 	_level._ghosts        = new Ghost*[map.get_ghosts_count()];
 
+	// loop counters
 	int tiles_count         = 0;
 	int retreat_tiles_count = 0;
 	int ghost_tiles_count   = 0;
@@ -133,7 +138,8 @@ Ghost* LevelController::create_ghost(int row, int column, int index) const
 void LevelController::create_player(int row, int column)
 {
 	float object_size = GameSettings::GAME_OBJECT_SIZE;
-
+	
+	// by design pac-man is initially standing on the border of two neighbouring tiles.
 	float x = column * object_size;
 	float y = row    * object_size + object_size / 2;
 
@@ -145,6 +151,9 @@ void LevelController::create_player(int row, int column)
 	_level._player = Player(position, size, direction, speed);
 }
 
+/*
+Updates the player (see PlayerController) and handles collisions with rigid tiles and collectables.
+*/
 void LevelController::update_player()
 {
 	Tile* underlying_tile = _level.get_tile_at(_level._player.get_position());
@@ -159,6 +168,9 @@ void LevelController::update_player()
 	handle_power_ups_collisions(player_controller);
 }
 
+/*
+Updates all ghosts (see GhostController) and handles their tile and player collisions.
+*/
 void LevelController::update_ghosts()
 {
 	for (int i = 0; i < _level.get_map().get_ghosts_count(); i++)
@@ -177,11 +189,14 @@ void LevelController::update_ghosts()
 	}
 }
 
+/*
+Determines if the moving object collides with a rigid tile and handles the collision.
+See MovingObjectController.
+*/
 void LevelController::handle_tile_collisions(MovingObjectController& moving_object_controller)
 {
-	int count = _level.get_map().get_tiles_count();
-
 	Tile** tiles = _level.get_tiles();
+	int count = _level.get_map().get_tiles_count();
 
 	for (int i = 0; i < count; i++)
 	{
@@ -196,6 +211,9 @@ void LevelController::handle_tile_collisions(MovingObjectController& moving_obje
 	}
 }
 
+/*
+Collects pac-dots on collision.
+*/
 void LevelController::handle_pac_dots_collisions(PlayerController& player_controller)
 {
 	int count = _level.get_map().get_pac_dots_count();
@@ -217,6 +235,9 @@ void LevelController::handle_pac_dots_collisions(PlayerController& player_contro
 	}
 }
 
+/*
+Collects power-ups on collision.
+*/
 void LevelController::handle_power_ups_collisions(PlayerController& player_controller)
 {
 	int count = _level.get_map().get_power_ups_count();
@@ -240,6 +261,10 @@ void LevelController::handle_power_ups_collisions(PlayerController& player_contr
 	}
 }
 
+/*
+Handles player - ghost collisions. Depending on the ghost mode of the ghost 
+the player either dies or eats the ghost.
+*/
 void LevelController::handle_ghost_collision(Player& player, Ghost& ghost)
 {
 	if (!CollisionDetector::has_collision(player, ghost))
@@ -259,6 +284,10 @@ void LevelController::handle_ghost_collision(Player& player, Ghost& ghost)
 	}
 }
 
+/*
+Returns the center point of the tile referred by the row and column indices.
+row and column are zero-based tile indices.
+*/
 Vector2f LevelController::determine_game_object_position(int row, int column) const
 {
 	float tile_size = GameSettings::GAME_OBJECT_SIZE;

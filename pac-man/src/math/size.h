@@ -1,5 +1,8 @@
 #pragma once
 
+/*
+A two-dimensional size of an object.
+*/
 struct Size
 {
 	float height;

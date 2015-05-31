@@ -2,6 +2,11 @@
 
 #include "keyboard_handler.h"
 
+KeyboardHandler::KeyboardHandler()
+{
+	up = down = left = right = SDL_RELEASED;
+}
+
 KeyboardHandler& KeyboardHandler::get_instance()
 {
 	static KeyboardHandler* instance;
@@ -41,9 +46,4 @@ void KeyboardHandler::update_states(const SDL_Event& event)
 			break;
 		}
 	}
-}
-
-KeyboardHandler::KeyboardHandler()
-{
-	up = down = left = right = SDL_RELEASED;
 }

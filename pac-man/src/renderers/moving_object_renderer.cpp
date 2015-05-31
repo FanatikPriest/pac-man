@@ -4,6 +4,9 @@ MovingObjectRenderer::MovingObjectRenderer(const MovingObject& moving_object, SD
 	: GameObjectRenderer(moving_object, renderer), _moving_object(moving_object)
 {}
 
+/*
+Renders a texture of the object. It uses texture rotation and flipping.
+*/
 void MovingObjectRenderer::render_object()
 {
 	SDL_RenderCopyEx(_renderer, get_texture(), NULL, &get_texture_rect(), get_rotation_angle(), NULL, get_flip());
@@ -14,6 +17,9 @@ void MovingObjectRenderer::set_color()
 	// nothing
 }
 
+/*
+Returns the position and size of the message box.
+*/
 SDL_Rect MovingObjectRenderer::get_texture_rect()
 {
 	Size     size      = _moving_object.get_size();

@@ -47,6 +47,9 @@ void GameRenderer::render_lose_message()
 	render_message("You lose!");
 }
 
+/*
+Renders the given message at the center of the window.
+*/
 void GameRenderer::render_message(const char* message)
 {
 	SDL_Color yellow = { 0xFF, 0xFF, 0x00, 0xFF };

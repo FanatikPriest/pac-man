@@ -22,7 +22,7 @@ SDL_Texture* PlayerRenderer::get_texture()
 
 void PlayerRenderer::render_score()
 {
-	ScoreRenderer(_player._score, _renderer).render();
+	ScoreRenderer(const_cast<Player&>(_player).get_score(), _renderer).render();
 }
 
 double PlayerRenderer::get_rotation_angle()

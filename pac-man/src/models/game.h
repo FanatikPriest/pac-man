@@ -2,8 +2,11 @@
 
 #include "player.h"
 #include "level.h"
-#include "game_state.h"
+#include "../enums/game_state.h"
 
+/*
+The game contains the level and the current game state.
+*/
 class Game
 {
 public:

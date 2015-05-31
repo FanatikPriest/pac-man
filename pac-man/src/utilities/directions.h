@@ -1,7 +1,10 @@
 #pragma once
 
-#include "../vector_2f.h"
+#include "../math/vector_2f.h"
 
+/*
+Four normalized vectors the define the four movement directions.
+*/
 namespace Directions
 {
 	const float ZERO = 0.0f;
