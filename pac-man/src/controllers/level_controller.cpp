@@ -7,11 +7,7 @@ LevelController::LevelController(Level& level) : _level(level) {}
 
 void LevelController::create()
 {
-	create_tiles();
-	create_pac_dots();
-	create_power_ups();
-	create_ghosts();
-	create_player();
+	create_game_obejcts();
 }
 
 void LevelController::update()
@@ -23,185 +19,130 @@ void LevelController::update()
 	update_ghosts();
 }
 
-void LevelController::create_tiles()
+void LevelController::create_game_obejcts()
 {
-	float size = GameSettings::GAME_OBJECT_SIZE;
-
-	const Map& map  = _level.get_map();
-	char** char_map = map.get_char_map();
+	const Map& map = _level.get_map();
 
 	_level._tiles         = new Tile*[map.get_tiles_count()];
 	_level._retreat_tiles = new Tile*[map.get_retreat_tiles_count()];
 	_level._ghost_tiles   = new Tile*[map.get_ghosts_count()];
+	_level._pac_dots      = new PacDot*[map.get_pac_dots_count()];
+	_level._power_ups     = new PowerUp*[map.get_power_ups_count()];
+	_level._ghosts        = new Ghost*[map.get_ghosts_count()];
 
 	int tiles_count         = 0;
 	int retreat_tiles_count = 0;
 	int ghost_tiles_count   = 0;
+	int pac_dots_count      = 0;
+	int power_ups_count     = 0;
+	int ghosts_count        = 0;
+
+	char** char_map = map.get_char_map();
 
 	for (int i = 0; i < map.get_tile_rows_count(); i++)
 	{
 		for (int j = 0; j < map.get_tile_columns_count(); j++)
 		{
-			char symbol   = char_map[i][j];
+			char symbol = char_map[i][j];
 			bool is_rigid = symbol == 'x' || symbol == 'r';
 
-			Tile* new_tile = create_tile(size, size, i, j, is_rigid);
+			Tile* new_tile = create_tile(i, j, is_rigid);
 
 			_level._tiles[tiles_count] = new_tile;
 
 			tiles_count++;
 
-			if (symbol == 'r')
+			switch (symbol)
 			{
-				_level._retreat_tiles[retreat_tiles_count] = new_tile;
+				case ('r'):
+				{
+					_level._retreat_tiles[retreat_tiles_count] = new_tile;
 
-				retreat_tiles_count++;
-			}
+					retreat_tiles_count++;
 
-			if (symbol == 'g')
-			{
-				_level._ghost_tiles[ghost_tiles_count] = new_tile;
+					break;
+				}
+				case ('d'):
+				{
+					_level._pac_dots[pac_dots_count] = create_pac_dot(i, j);
+					pac_dots_count++;
+					break;
+				}
+				case ('g'):
+				{
+					_level._ghost_tiles[ghost_tiles_count] = new_tile;
+					ghost_tiles_count++;
 
-				ghost_tiles_count++;
+					int index = (3 + ghosts_count) % 4;
+
+					_level._ghosts[ghosts_count] = create_ghost(i, j, index);
+					ghosts_count++;
+
+					break;
+				}
+				case ('u'):
+				{
+					_level._power_ups[power_ups_count] = create_power_up(i, j);
+					power_ups_count++;
+					break;
+				}
+				case ('p'):
+				{
+					create_player(i, j);
+					break;
+				}
 			}
 		}
 	}
 }
 
-void LevelController::create_pac_dots()
+Tile* LevelController::create_tile(int row, int column, bool is_rigid) const
 {
-	const Map& map  = _level.get_map();
-	char** char_map = map.get_char_map();
+	Vector2f position = determine_game_object_position(row, column);
+	Size     size     = Size(GameSettings::GAME_OBJECT_SIZE);
 
-	_level._pac_dots = new PacDot*[map.get_pac_dots_count()];
-
-	float size = GameSettings::PAC_DOT_SIZE;
-
-	int pac_dots_count = 0;
-
-	for (int i = 0; i < map.get_tile_rows_count(); i++)
-	{
-		for (int j = 0; j < map.get_tile_columns_count(); j++)
-		{
-			if (char_map[i][j] == 'd')
-			{
-				_level._pac_dots[pac_dots_count] = create_pac_dot(size, size, i, j);
-				pac_dots_count++;
-			}
-		}
-	}
+	return new Tile(position, size, row, column, is_rigid);
 }
 
-void LevelController::create_power_ups()
+PacDot* LevelController::create_pac_dot(int row, int column) const
 {
-	const Map& map  = _level.get_map();
-	char** char_map = map.get_char_map();
+	Vector2f position = determine_game_object_position(row, column);
+	Size     size     = Size(GameSettings::PAC_DOT_SIZE);
 
-	float size = GameSettings::POWER_UP_SIZE;
-
-	_level._power_ups = new PowerUp*[map.get_power_ups_count()];
-
-	int power_ups_count = 0;
-
-	for (int i = 0; i < map.get_tile_rows_count(); i++)
-	{
-		for (int j = 0; j < map.get_tile_columns_count(); j++)
-		{
-			if (char_map[i][j] != 'u')
-			{
-				continue;
-			}
-
-			_level._power_ups[power_ups_count] = create_power_up(size, size, i, j);
-
-			power_ups_count++;
-		}
-	}
+	return new PacDot(position, size);
 }
 
-void LevelController::create_ghosts()
+PowerUp* LevelController::create_power_up(int row, int column) const
 {
-	const Map& map  = _level.get_map();
-	char** char_map = map.get_char_map();
+	Vector2f position = determine_game_object_position(row, column);
+	Size     size     = Size(GameSettings::POWER_UP_SIZE);
 
-	_level._ghosts = new Ghost*[map.get_ghosts_count()];
-
-	int ghosts_count = 0;
-
-	for (int i = 0; i < map.get_tile_rows_count(); i++)
-	{
-		for (int j = 0; j < map.get_tile_columns_count(); j++)
-		{
-			if (char_map[i][j] != 'g')
-			{
-				continue;
-			}
-
-			int index = (3 + ghosts_count) % 4;
-
-			_level._ghosts[ghosts_count] = create_ghost(i, j, index);
-
-			ghosts_count++;
-		}
-	}
-}
-
-void LevelController::create_player()
-{
-	float x = 14.0f * GameSettings::GAME_OBJECT_SIZE;
-	float y = 22.5f * GameSettings::GAME_OBJECT_SIZE;
-
-	float object_size = GameSettings::GAME_OBJECT_SIZE;
-
-	Vector2f position(x, y);
-	Size     size(object_size, object_size);
-	Vector2f direction(0.0f, 0.0f);
-	float    speed = GameSettings::PLAYER_SPEED;
-
-	_level._player = Player(position, size, direction, speed);
-}
-
-Tile* LevelController::create_tile(float width, float height, int row, int column, bool is_rigid) const
-{
-	float x = column * height + height / 2.0f;
-	float y = row    * width  + width  / 2.0f;
-
-	return new Tile(x, y, height, width, row, column, is_rigid);
-}
-
-PacDot* LevelController::create_pac_dot(float width, float height, int row, int column) const
-{
-	float tile_size = GameSettings::GAME_OBJECT_SIZE;
-
-	float x = column * tile_size + tile_size / 2.0f;
-	float y = row    * tile_size + tile_size / 2.0f;
-
-	return new PacDot(x, y, height, width);
-}
-
-PowerUp* LevelController::create_power_up(float width, float height, int row, int column) const
-{
-	float tile_size = GameSettings::GAME_OBJECT_SIZE;
-
-	float x = column * tile_size + tile_size / 2.0f;
-	float y = row    * tile_size + tile_size / 2.0f;
-
-	return new PowerUp(x, y, height, width);
+	return new PowerUp(position, size);
 }
 
 Ghost* LevelController::create_ghost(int row, int column, int index) const
 {
-	float tile_size = GameSettings::GAME_OBJECT_SIZE;
-
-	float x = column * tile_size + tile_size / 2.0f;
-	float y = row    * tile_size + tile_size / 2.0f;
-
-	Vector2f position(x, y);
-	Size     size(tile_size, tile_size);
-	Vector2f direction(0.0f, 0.0f);
-	float    speed(GameSettings::GHOST_SPEED);
+	Vector2f position  = determine_game_object_position(row, column);
+	Size     size      = Size(GameSettings::GAME_OBJECT_SIZE);
+	Vector2f direction = Vector2f(0.0f, 0.0f);
+	float    speed     = GameSettings::GHOST_SPEED;
 
 	return new Ghost(position, size, direction, speed, index);
+}
+
+void LevelController::create_player(int row, int column)
+{
+	float object_size = GameSettings::GAME_OBJECT_SIZE;
+
+	float x = column * object_size;
+	float y = row    * object_size + object_size / 2;
+
+	Vector2f position(x, y);
+	Size     size(object_size);
+	Vector2f direction(0.0f, 0.0f);
+	float    speed = GameSettings::PLAYER_SPEED;
+
+	_level._player = Player(position, size, direction, speed);
 }
 
 void LevelController::update_player()
@@ -316,4 +257,14 @@ void LevelController::handle_ghost_collision(Player& player, Ghost& ghost)
 	{
 		player.set_is_alive(false);
 	}
+}
+
+Vector2f LevelController::determine_game_object_position(int row, int column) const
+{
+	float tile_size = GameSettings::GAME_OBJECT_SIZE;
+
+	float x = column * tile_size + tile_size / 2.0f;
+	float y = row    * tile_size + tile_size / 2.0f;
+
+	return Vector2f(x, y);
 }

@@ -16,16 +16,13 @@ public:
 private:
 	Level& _level;
 
-	void create_tiles();
-	void create_pac_dots();
-	void create_power_ups();
-	void create_ghosts();
-	void create_player();
+	void create_game_obejcts();
 
-	Tile*    create_tile(float width, float height, int row, int column, bool is_rigid) const;
-	PacDot*  create_pac_dot(float width, float height, int row, int column) const;
-	PowerUp* create_power_up(float width, float height, int row, int column) const;
+	Tile*    create_tile(int row, int column, bool is_rigid) const;
+	PacDot*  create_pac_dot(int row, int column) const;
+	PowerUp* create_power_up(int row, int column) const;
 	Ghost*   create_ghost(int row, int column, int index) const;
+	void     create_player(int row, int column);
 
 	void update_player();
 	void update_ghosts();
@@ -34,4 +31,6 @@ private:
 	void handle_pac_dots_collisions(PlayerController& player_controller);
 	void handle_power_ups_collisions(PlayerController& player_controller);
 	void handle_ghost_collision(Player& player, Ghost& ghost);
+
+	Vector2f determine_game_object_position(int row, int column) const;
 };

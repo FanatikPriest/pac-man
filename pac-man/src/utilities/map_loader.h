@@ -3,15 +3,17 @@
 #include <iostream>
 #include <fstream>
 #include <string>
+#include <algorithm>
 
 using namespace std;
 
 namespace MapLoader
 {
-	const int ROWS    = 30;
-	const int COLUMNS = 28;
+	int ROWS    = 30;
+	int COLUMNS = 28;
 
-	char** read_map_from_file() {
+	char** read_map_from_file()
+	{
 		string line;
 		ifstream file("data/level_map");
 
@@ -20,19 +22,29 @@ namespace MapLoader
 			throw "Cannot load level map.";
 		}
 
+		ROWS = (int) count(istreambuf_iterator<char>(file), istreambuf_iterator<char>(), '\n');
+
 		char** map = new char*[ROWS];
 
-		int line_count  = 0;
-		int bugger_size = COLUMNS + 1;
+		file.clear();
+		file.seekg(0, ios::beg);
 
-		while (getline(file, line))
+		getline(file, line);
+
+		COLUMNS = line.length();
+
+		int lines_read  = 0;
+		int buffer_size = COLUMNS + 1;
+
+		do
 		{
-			map[line_count] = new char[bugger_size];
+			map[lines_read] = new char[buffer_size];
 
-			strcpy_s(map[line_count], bugger_size, line.c_str());
+			strcpy_s(map[lines_read], buffer_size, line.c_str());
 
-			line_count++;
+			lines_read++;
 		}
+		while (getline(file, line));
 
 		file.close();
 

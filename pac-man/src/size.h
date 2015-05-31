@@ -11,6 +11,12 @@ struct Size
 		width  = 0.0f;
 	}
 
+	Size(float dimension)
+	{
+		height = dimension;
+		width  = dimension;
+	}
+
 	Size(float height, float width)
 	{
 		this->height = height;
